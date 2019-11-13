@@ -1,0 +1,3 @@
+[submodule "TeXTemplate"]
+	path = TeXTemplate
+	url = https://github.com/chhzh123/mylatextmpl.git
