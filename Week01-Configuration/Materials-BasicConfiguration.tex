@@ -1,0 +1,205 @@
+\documentclass[english]{../TexTemplate/thesis}
+\usepackage[cpp]{../TexTemplate/mypackage}
+\lstset{language=bash}
+
+\title{Week 1 - Basic Configuration}
+\author{Hongzheng Chen}
+\date{Nov 15, 2019}
+\headercontext{Week 1 - Basic Configuration}
+
+\begin{document}
+
+\maketitle
+
+This seminar is partly based on the seminar about tools in applied mathematics held in PKU\footnote{ToolsSeminar, \url{https://github.com/pppppass/ToolsSeminar}}.
+
+\section{Text Editors}
+Comparisons among different text editors can be found \href{https://www.software.com/src/ranking-the-top-5-code-editors-2019}{here}.
+Based on the Stack Overflow's 2018 Developer Survey, the top 5 code editors are listed below:
+\begin{enumerate}
+	\item \href{https://code.visualstudio.com/}{Visual Studio Code}: It is very young (1st version in mid-2015) but must be the text editor in the new era with many advanced text editor techniques.
+	Open source and managed by Microsoft means VS Code has more resources and attracts more developers to devote to it, which leads to one of the most popular projects on Github.
+	Support to keybindings of other text editors also makes more users from different societies.
+	Moreover, highlighting and auto completion of some minor languages (e.g. Verilog, Prolog) gains its popularity.
+	The biggest disadvantage may be its speed due to the Electron-based backend.
+	New features can be found in this \href{https://zhuanlan.zhihu.com/vs-code}{Chinese blog}.
+	\item \href{https://www.sublimetext.com/}{Sublime Text}: It is light-weight and extremely fast.
+	Many language support can also be found in Preference - Package Control, and it is easy to configure the build system of different languages.
+	The keybinding is very user-friendly.
+	Though it also has large community, it is close-source which somehow hinders its development.
+	\item \href{https://atom.io/}{Atom}: Best known as its hackability and seamless Github integration.
+	\item \href{https://www.vim.org/}{Vim}: For experts who prefer keyboard and shortcuts over UI.
+	I think it is very hard to use.
+	But you have to get used to it if you want to operate on a Linux server.
+	\item \href{https://notepad-plus-plus.org/}{Notepad++}: Lightweight and basic for Windows, but somehow old-fashion.
+\end{enumerate}
+
+An editor suitable for you is the best.
+So do not hesitate, pick one, and just have a try.
+
+\section{Regular Expression (Regex)}
+Many text editor have support to regular expression, which is very commonly used in searching and replacing.
+Also, some programming languages have standard library of regular expression, including C++ 11's \href{http://www.cplusplus.com/reference/regex/}{regex} and Python 3's \href{https://docs.python.org/zh-cn/3.6/library/re.html}{re}, which we will cover in the following courses.
+
+Some tutorials on regex include:
+\begin{itemize}
+	\item \href{https://deerchao.cn/tutorials/regex/regex.htm}{Regex 30 min blitz}
+	\item \href{https://github.com/ziishaned/learn-regex}{Learn Regex: The Easy Way}
+\end{itemize}
+
+The best way to learn regex is practicing on some cases, you can make online test on \href{https://regex101.com}{Regex 101}.
+Write your example, and try to get out the pattern.
+
+\section{Linux Environment}
+It is highly suggested to use a Unix-like environment even if you use a Windows system.
+Reasons include:
+\begin{itemize}
+	\item Some packages either do not work well or are hard to configure in Windows, especially large deep learning packages TensorFlow and PyTorch. On the contrary, there are thorough tutorials on configuration in Ubuntu (and maybe macOS).
+	\item Tool chains are broken up in Windows.
+	For example, Git, Make, Python, gdb, perf are initially installed in Linux (most of which will be covered in the following courses), while they must be manually installed in Windows and sometimes meet lots of dependency issues.
+	\item Many computing packages are developed on Linux with little support to Windows.
+	For example, it is very troublesome to configure large deep learning packages like TensorFlow and PyTorch on Windows, and you may meet many strange problems which even cannot find solutions on Internet.
+	However, if you use Linux or macOS, you can easily install them and find solutions to some issues on Github or Stack Overflow.
+	\item Getting accustomed to shells and terminals benefits because you may login to remote servers at some point.
+	Some examinations and competitions may also only provide Linux environment.
+\end{itemize}
+
+There are several ways to have a Linux machine I recommend.
+\begin{itemize}
+	\item \textbf{Install the Windows Subsystem for Linux (WSL).}
+	It is effortless and fully compatible with your Windows computer.
+	Installation Guide can be found on the \href{https://docs.microsoft.com/en-us/windows/wsl/install-win10}{official site}.
+	WSL2 will be released in 2020, you can install the preview version following this \href{https://docs.microsoft.com/en-us/windows/wsl/wsl2-install}{guide}.
+	To configure WSL in VS Code, instructions can be found \href{https://code.visualstudio.com/docs/remote/wsl}{here}.
+
+	\item \textbf{Install a virtual machine.}
+	It is also commonly used and will be very useful when you develop your own operating system (core course in the 2nd grade).
+
+	For a virtual machine, \href{https://www.virtualbox.org/}{VirtualBox} is recommended, which is a free virtual machine program by Oracle. Note that \href{https://www.vmware.com/}{VMWare} is another famous virtual machine software, but there are license issues. Additionally, VirtualBox provides better support for Linux systems, while VMWare is better for Windows systems or heavy tasks.
+
+	Downloads of VirtualBox can be found \href{https://www.virtualbox.org/wiki/Downloads}{this page}. Documentation can be found \href{https://www.virtualbox.org/wiki/Documentation}{here}, where a \verb".pdf" User Manual is provided.
+
+	For Linux distributions, \href{https://www.ubuntu.com/desktop}{Ubuntu for desktops} is a ready-to-use operating system for new-comers to Linux. There are also easy-to-understand instructions during installation on the \href{https://www.ubuntu.com/desktop}{website}. Ubuntu 18.04 LTS is the most-recently stable one.
+
+	\item \textbf{Buy a cloud server.}
+	Many cloud server providers have education discount, which give students a first try to do some works on Linux.
+	Some famous foreign cloud server providers include Amazon's \href{https://aws.amazon.com/cn/}{AWS}, Microsoft's \href{https://azure.microsoft.com/en-us/}{Azure}, and Google's \href{https://cloud.google.com/}{Google Cloud}.
+	In China, Alibaba's \href{https://www.aliyun.com/}{Aliyun} and Tencent's \href{https://cloud.tencent.com/}{TencentCloud} are two of the most popular cloud providers.
+
+	Tencent Cloud provides student discount of 10 y/m, details can be found \href{https://cloud.tencent.com/act/campus?from=11419}{here}.
+	Aliyun also provides a discount of 9.5 y/m, products can be found \href{https://promotion.aliyun.com/ntms/act/campus2018.html?utm_content=se_1003165671}{here}.
+	Many foreign cloud providers may have free accounts for the first year.
+	If you have your own server, you can make some fantastic things like building your personal webpage (\href{https://wordpress.com/}{WordPress}), configuring your own git server for collaboration, and having your own net disk (\href{https://www.seafile.com/home/}{Seafile}).
+
+	As an alternative, we may provide you accounts of the server in our lab after you get familiar with the Linux environment.
+\end{itemize}
+
+For Linux and Mac OS users, nothing is needed but just opening a terminal.
+
+A Chinese introduction to Linux command lines is shown \href{https://linux.cn/article-6160-1.html}{here}. NIH also provides a course \href{https://hpc.nih.gov/training/handouts/Linux_NIH_2017.pdf}{Introduction to Linux} to tell basic GNU and Linux concepts. The first 32 pages is adequate for a start in Linux.
+
+SSH, Vim and Make, which are three important tools, are always included in Unix-like environments. If not, you may install it through your package manager (\verb'apt-get' in Ubuntu and \verb'yum' in CentOS).
+
+To login a remote server from a client, you can use some SSH login software, like \href{https://www.netsarang.com/en/xshell-download/}{XShell} and \href{https://www.putty.org/}{PuTTY}.
+To enable remote login on the server, a SSH key is needed to be generated. This is described in Xuefeng Liao's Git tutorial in the section \href{https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001374385852170d9c7adf13c30429b9660d0eb689dd43a000}{Remote repositories}, as well as in \emph{Git official tutorial} in section 4.3 \href{https://git-scm.com/book/en/v2/Git-on-the-Server-Generating-Your-SSH-Public-Key}{\emph{Git on the Server --- Generating Your SSH Public Key}}. If you want to permit remote logins into your system, a SSH service is also required, which is described \href{http://www.linuxidc.com/Linux/2010-02/24349.htm}{here}.
+
+SSH is also useful to transfer the message generated by WSL to your Windows system. Combining with \href{https://sourceforge.net/projects/xming/}{Xming}, you can run graphical programs on WSL. Instructions can be found \href{https://virtualizationreview.com/articles/2017/02/08/graphical-programs-on-windows-subsystem-on-linux.aspx}{here}.
+
+A famous \href{https://stackoverflow.com/questions/11828270/how-to-exit-the-vim-editor}{post} in Stack Overflow describes how to exit the Vim editor, which puzzles thousands of sophisticated programmers. Complete introduction to Vim are given by \href{http://www.jianshu.com/p/bcbe916f97e1}{this post} and \href{https://blog.interlinked.org/tutorials/vim_tutorial.html}{this website}.
+
+Make is an automatic build tool, which turns complicated build commands into a simple command \verb"make". Tutorials on Make can be easily found on the Internet, among which \href{http://www.ruanyifeng.com/blog/2015/02/make.html}{Yifeng Ruan's \emph{Tutorial on Make}} and \href{https://en.wikipedia.org/wiki/Make_(software)}{\emph{Make (software)} on Wikipedia} give useful information.
+But you need not get through them too quickly, we will detailedly cover Make in the later courses.
+
+\section{Git \& Github}
+Xuefeng Liao's \href{https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/}{Git Tutorial} is recommended for beginners in Git and GitHub.
+
+Git officially offers the book \href{https://git-scm.com/book/en/v2}{Pro Git}, which is also a great tutorial for Git and GitHub. Note that \verb".pdf" format and Chinese version are also provided. This tutorial covers more topics than Xuefeng Liao's tutorial, and therefore first 5 sections are enough.
+
+GitHub itself provides a training kit for Git and GitHub, in which one may refer to \href{https://services.github.com/on-demand/}{On Demand Train} and \href{https://services.github.com/on-demand/resources/learning-path/}{Learning Path}. The corresponding Git repository is \href{https://github.com/github/training-kit}{this one}.
+
+Further information can be found in \href{https://git-scm.com/doc}{Git's official document}, where a \href{https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf}{cheat sheet} of Git commands are provided.
+
+GitHub itself provides a \href{https://guides.github.com/activities/hello-world/}{brief introduction} to GitHub. Note that \href{https://guides.github.com/}{GitHub Guides} covers more topics which you may find helpful at some point.
+
+Further information about \verb".gitignore" can be found in Xuefeng Liao's \href{https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013758404317281e54b6f5375640abbb11e67be4cd49e0000}{Git Tutorial} and \href{https://git-scm.com/docs/gitignore}{Git's reference}. GitHub provides a \href{https://github.com/github/gitignore}{repository} for several \verb".gitignore" templates.
+
+Difference among Licenses can be found \href{https://choosealicense.com/licenses/}{here}.
+About commit messages and change log, you can find templates in this \href{https://blog.coding.net/blog/commit_message_change_log}{website}.
+To write a good \verb'README.md' document, you can look through this \href{https://gist.github.com/PurpleBooth/109311bb0361f32d87a2}{template}.
+The usage of Markdown will be covered in next course.
+
+Basically, if you have installed Git on your computer, VS Code may detect that.
+Otherwise, you can look through this \href{https://code.visualstudio.com/docs/editor/versioncontrol}{page} for help.
+% WSL + VS code + git https://github.com/andy-5/wslgit
+
+\section{Code Style}
+Please refer to \href{http://google.github.io/styleguide/}{Google Style Guide} for further information, but you need not strictly conform it.
+What you need to remember is to format your code in a same way.
+For convenience, you can directly use the formatting function in the text editor.
+
+\newpage
+\section{Assignments}
+\subsection{Before Your Work}
+Please make the prerequirement first.
+\begin{enumerate}
+\item Install a text editor suitable to you.
+\item Have a Linux machine no matter using which approach.
+\item Register a Github account.
+\end{enumerate}
+
+All the materials and slides can be obtained by
+\begin{lstlisting}
+$ git clone --recursive https://github.com/chhzh123/ToolsSeminar-CS.git
+\end{lstlisting}
+
+\subsection{Your Work}
+Make sure you have cloned the repository, and hack the question below.
+
+\bigskip
+\begin{question}[Username]\normalfont
+A website constrains its user name as follows,
+\begin{itemize}
+	\item Only lower case, upper case, underline, and hyphen are allowed.
+	\item Only $5\thicksim 20$ characters are allowed.
+	\item The first character should be lower case.
+\end{itemize}
+Now you have a list of user names, try to find \textbf{the number of valid user names}.
+No methods or tools are constrained, but be clever and efficient.
+
+To obtain the list of names, follow the command below in the \verb'ToolsSeminar-CS' folder.
+(Linux environment is needed.)
+\begin{lstlisting}
+$ cd Assignments/BasicConfiguration
+$ make
+\end{lstlisting}
+Then a file called \verb'name.txt' is generated.
+You should use this file as the problem input.
+The input guarantees each name (valid/invalid) begins with \verb'(#)', where \verb'#' is a number.
+\end{question}
+
+* This work is a naive attempt of data cleaning, which is an important step in big data processing.
+Most of the viable data in real life are complex strings, so you need to structure and filter out the useful data first, after which you can do the analysis.
+Actually the data obtained from Internet and from your experiments are much bigger and more irregular than this example.
+But since this is the first assignment, only toy example is given here (((
+
+\subsection{After Your Work}
+After finishing your work,
+\begin{enumerate}
+\item Create your personal public repository to store your assignment.
+(No README, no license for this time.)
+\item Upload your repository to Github.
+\item Commit your first work to the repository.
+(Only a text file briefly describing how you do or a piece of code should be uploaded.)
+\end{enumerate}
+
+Remember:
+\begin{itemize}
+\item Structurally manage your repository.
+For example, you can create a folder each week under your repo, and store the corresponding assignment in the folder.
+\item Do not upload unnecessary files including the generated file and your intermediate files.
+You should write \verb'.gitignore' file!
+\item Do not forget to write commit messages. Briefly state what you have done in this commit.
+\item Basically, you CANNOT remove the history of git, so be careful when you commit.
+\end{itemize}
+
+\end{document}
