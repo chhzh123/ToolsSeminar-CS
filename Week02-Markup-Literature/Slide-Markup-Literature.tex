@@ -54,8 +54,6 @@ Data serialization language:
 \item Resource Description Framework (\href{https://www.w3schools.com/xml/xml_rdf.asp}{RDF}) $\to$ Knowledge graph
 \end{itemize}
 \end{frame}
-% [USENIX ATC] Fast and Concurrent RDF Queries using RDMA-assisted GPU Graph Exploration. Siyuan Wang, Chang Lou, Rong Chen, and Haibo Chen. Proceedings of 2018 USENIX Annual Technical Conference, Boston, MA, US, July 2018.
-% [OSDI] Fast and Concurrent RDF Queries with RDMA-based Distributed Graph Exploration. Jiaxin Shi, Youyang Yao, Rong Chen, Haibo Chen and Feifei Li. 2016 Usenix Symposium on Operating System Design and Implementation.
 
 \begin{frame}[fragile]{JSON \& YAML}
 Commonly used in data serialization (left: JSON, right: YAML)
@@ -116,7 +114,7 @@ Basic elements of HTML: \href{https://www.w3school.com.cn/html/html_basic.asp}{w
 \href{https://en.wikipedia.org/wiki/Markdown}{Markdown} - A very lightweight markup language
 \begin{itemize}
 	\item Often used to format readme files (\verb'README.md'), e.g. Github
-	\item For writing messages in online discussion formums, e.g. zhihu, A-tier conference submission system
+	\item For writing messages in online discussion forums, e.g. Zhihu, top-tier conference submission system
 	\item To create rich text using a plain text editor, e.g. taking notes
 \end{itemize}
 \end{frame}
@@ -129,6 +127,7 @@ Online Preview: \href{https://dillinger.io/}{Dillinger} (Actually, there're many
 	\item \verb'1. 2. 3.', \verb'* * *'
 	\item \verb'[url name](http://url.com)'
 	\item \verb'![image](image_path)'
+	\item \verb'| | |' (table)
 	\item \verb'>' (quote)
 	\item \verb'```cpp ''''
 	\item Inline HTML is also supported
@@ -157,7 +156,8 @@ Variant: \href{https://github.github.com/gfm/}{Github Flavored Markdown (GFM)}
 \sectionpage
 \end{frame}
 
-\begin{frame}{Official Rankings on CS}
+\subsection{Rankings in CS}
+\begin{frame}{Official Rankings in CS}
 \begin{itemize}
 	\item Conference / Journal Ranking: \href{https://www.ccf.org.cn/xspj/gyml/}{China Computer Federation (CCF)}
 	\item University Ranking: \href{http://csrankings.org/\#/index?all}{CS Rankings}
@@ -179,7 +179,8 @@ CS Ranking by \href{http://csrankings.org/\#/index?all}{CSRankings} (2019.11.19)
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Paper Resources}
+\subsection{Literature Resources}
+\begin{frame}{Literature Resources}
 All the resources can be accesses with a school IP address
 \begin{itemize}
 	\item \href{https://ieeexplore.ieee.org/Xplore/home.jsp}{IEEE Xplore} Digital Library
@@ -187,19 +188,23 @@ All the resources can be accesses with a school IP address
 	\item \href{https://arxiv.org/}{arXiv}: Electronic preprints
 	\item \href{https://dblp.org/}{dblp}: Computer Science Bibliography
 	\item \href{https://scholar.google.com/}{Google Scholar}
+	\item \href{https://www.linkedin.com/}{LinkedIn}, personal webpage
 \end{itemize}
 For CS, conference $>>$ journal
 \end{frame}
 
-\begin{frame}{Paper Organization}
+\subsection{Paper Structure}
+\begin{frame}{Paper Structure}
 Mainly research paper, not survey:
 \begin{itemize}
-	\item Title, Author list (first, corresponding)
+	\item Title, Author list (first, corresponding, last)
+	\begin{itemize}
+		\item Pay attention to their affiliation, group, relationship
+	\end{itemize}
 	\item Abstract, Keywords
-	\item Introduction
-	\item Background \& Motivation
+	\item Introduction, Background \& Motivation (fundamental important)
 	\item Methodologies
-	\item Experiments
+	\item Experiments: Pay attention to their settings
 	\item Related Work
 	\item Conclusions \& Discussions
 	\item Acknowledgments
@@ -220,6 +225,16 @@ Bib\TeX file:
 * \emph{Download citations} from ACM/IEEE
 \end{frame}
 
+\begin{frame}{How to Read / Write Papers?}
+Not our topic today, but you can refer to
+\begin{itemize}
+	\item \href{http://inpluslab.com/paperwriting}{\emph{Scientific Reading \& Writing}},\\lectured by Huawei Huang (2019 Fall in SYSU)
+	\item Adrian Wallwork, \emph{English for Writing Research Papers}
+\end{itemize}
+* \href{https://www.grammarly.com/}{Grammarly} for proofreading
+\end{frame}
+
+\subsection{Literature Management}
 \begin{frame}{Literature Management}
 \href{https://www.zotero.org}{Zotero}: collect, organize, cite, and share research
 \begin{figure}
@@ -227,7 +242,6 @@ Bib\TeX file:
 \includegraphics[width=0.8\linewidth]{fig/zotero.png}
 \end{figure}
 \end{frame}
-% A great intro here \url{https://speakerdeck.com/markding/collecting-organizing-and-citing-scientific-literature-an-intro-to-zotero?slide=20}
 
 \begin{frame}{Zotero}
 \begin{itemize}
@@ -249,7 +263,7 @@ Bib\TeX file:
 	\item Markup languages: XML, Markdown
 	\item CS Ranking
 	\item Literature resources: ACM, IEEE, arXiv
-	\item Paper organization
+	\item Paper structure
 	\item Literature management: Zotero
 \end{itemize}
 \end{frame}
