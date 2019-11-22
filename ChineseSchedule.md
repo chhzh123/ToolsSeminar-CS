@@ -4,9 +4,11 @@
 * 代码管理 git、Github
 * 代码规范 Google Style Guide
 
-## Week 2 - 文献管理、标记语言
+## Week 2 - 标记语言、科学文献
+* 标记语言 Markdown、XML
+* 排名 CCF推荐会议期刊目录、CSRankings
+* 论文库 ACM、IEEE、arXiv
 * 文献管理 Zotero
-* 标记语言 Markdown、xml、json、yaml
 
 ## Week 3 - C/C++编译运行工具链
 * 编译工具链 gcc/clang(MinGW)/icpc
