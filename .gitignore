@@ -272,4 +272,12 @@ TSWLatexianTemp*
 # Makeindex log files
 *.lpz
 
+# C
+*.o
+
+# CMake
+cmake_install.cmake
+CMakeCache.txt
+CMakeFiles
+
 Supplements

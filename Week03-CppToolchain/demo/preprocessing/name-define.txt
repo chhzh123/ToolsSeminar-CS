@@ -1,0 +1,8 @@
+#ifndef NAME_TXT
+#define NAME_TXT
+
+Alice
+Bob
+Carlo
+
+#endif // NAME_TXT
