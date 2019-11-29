@@ -10,11 +10,12 @@
 * 论文库 ACM、IEEE、arXiv
 * 文献管理 Zotero
 
-## Week 3 - C/C++编译运行工具链
-* 编译工具链 gcc/clang(MinGW)/icpc
-* 自动编译 cmake/Makefile
-* 代码调试 gdb
-* 性能剖析 perf、time、valgrind
+## Week 3 - C/C++工具链
+* 计算机系统简介
+* 编译器 gcc/clang/icpc
+* 自动编译 Makefile/CMake
+* 代码调试 gdb、gtest
+* 性能剖析 time、perf、valgrind
 
 ## Week 4 - LaTeX配置与使用
 * 环境配置 CTex/TexLive、Overleaf
