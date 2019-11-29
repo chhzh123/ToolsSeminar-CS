@@ -329,7 +329,7 @@ Put previous commands together
 avg: avg.o
 	gcc avg.o -o avg
 
-avg.o:
+avg.o: avg.c
 	gcc avg.c -c -o avg.o
 \end{minted}
 Just type \verb'make'!
@@ -360,7 +360,7 @@ CC = gcc
 avg: avg.o
 	$(CC) avg.o -o avg
 
-avg.o:
+avg.o: avg.c
 	$(CC) avg.c $(FLAGS) -c -o avg.o
 \end{minted}
 \end{frame}
@@ -381,7 +381,7 @@ FLAGS = -O3
 \end{minted}
 Compared with
 \begin{minted}[frame=single]{bash}
-avg:
+avg: avg.c
 	$(CC) avg.c $(FLAGS) -o avg.o
 \end{minted}
 \end{frame}
@@ -428,6 +428,14 @@ The GNU Debugger (GDB)\footnote{\scriptsize source: \href{https://en.wikipedia.o
 \item \verb'bt': Backtrace (in case the program crashed)
 \item \verb'info registers': Dump all registers
 \item \verb'break 10': Breakpoint at line 10
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Debugging}
+Demo by \emph{Yucheng Chen}
+\begin{itemize}
+	\item DFS
+	\item BFS
 \end{itemize}
 \end{frame}
 
