@@ -1,0 +1,155 @@
+\documentclass[english]{../TexTemplate/thesis}
+\usepackage[cpp]{../TexTemplate/mypackage}
+
+\title{Week 3 - C/C++ Toolchain}
+\author{Hongzheng Chen}
+\date{Nov 29, 2019}
+\headercontext{Week 3 - C/C++ Toolchain}
+
+\begin{document}
+
+\maketitle
+
+Week 3's seminar is partly based on \href{https://cornell-ece2400.github.io/ece2400-docs/ece2400-sec2-c-basics/}{Cornell ECE 2400: Computer Systems Programming} lectured by Christopher Batten in Fall 2019.
+
+\section{Assignments}
+\subsection{Auto Building}
+In this assignment, you will learn how to build a small project and make each components function correctly.
+
+The project demonstrates the basic usage of the Computer Graphics (CG) library \href{https://www.opengl.org}{OpenGL}, which is commonly used in nowadays PC games.
+It reads in polygon mesh and displays the model on the screen, as shown in Fig.~\ref{fig:cactus}.
+Typing \verb'w', \verb'a', \verb's', and \verb'd', the model will correspondingly move up, left, down, and right.
+Typing \verb'r', the model rotates clockwise; Typing \verb'R', it rotates anticlockwise.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig/assignments/autobuild_result.png}
+\caption{Expected output: A cactus}
+\label{fig:cactus}
+\end{figure}
+
+Several source program files are provided in \verb'Assignments/CppToolChain-AutoBuilding' folder, please \verb'cd' to that folder and have a look.\\
+What you need to do is to \underline{\textbf{write a \emph{Makefile} or \emph{CMake} file}} to build the project and generate the expected results as shown above.
+That is to say, you need NOT know how the program is working or how to use OpenGL.
+You only need to glue these files together.
+
+Firstly you should install some dependency libraries, which provides minimum support for graphical display.
+Type the following commands on your Linux system.
+\begin{lstlisting}
+sudo apt-get update
+sudo apt-get install freeglut3 freeglut3-dev
+\end{lstlisting}
+
+After installing the libraries above, you can begin your experiments.
+To generate the output, you should follow the compilation and linking flow shown in Fig.~\ref{fig:autobuild}.
+Since OOP and template are used, please use \verb'g++' to compile.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{fig/assignments/autobuild.pdf}
+\caption{Compilation and linking flow}
+\label{fig:autobuild}
+\end{figure}
+
+\verb'mesh.cpp' and \verb'display.cpp' are in the current folder.
+\verb'vec3.h' and \verb'mesh.h' are in \verb'include/'.
+\verb'libstest.a' is provided in \verb'lib/' folder.
+\verb'libGL', \verb'libglut', and \verb'libGLU' has been installed by \verb'freeglut3' you just typed.
+\verb'test1.in', \verb'test2.in', and \verb'test3.in' are three input files for the executable program.
+Thus, you only need to generate the colored three files in Fig.~\ref{fig:autobuild}.
+Detailed descriptions as follow:
+\begin{enumerate}
+\item Compile \verb'mesh.cpp' (which has included the \verb'mesh.h' and \verb'vec3.h' header) to \verb'mesh.o'.\\
+(Hint: \verb'-c' flag enables \verb'g++' to compile the source file to the object file.)
+\item Compile \verb'display.cpp' (which also includes the \verb'mesh.h' and \verb'vec3.h' header) to \verb'display.o'.
+Notice three different macros (\verb'TEST1'/\verb'TEST2'/\verb'TEST3') should be defined respectively, which can be viewed in Line 190-196 in \verb'display.cpp'.\\
+(Hint: \verb'-D' flag enables \verb'g++' to pass predefined macros to preprocessors.)
+\item Link the generated \verb'mesh.o' and \verb'display.o' with three CG libraries called \verb'libGL', \verb'libglut', and \verb'libGLU'.
+Also, a test static library provided in \verb'lib/libstest.a' should also be linked.\\
+(Hint: To link these static libraries, the first three characters \verb'lib' can be omitted. For example, to link libGL, you only need to write \verb'-lGL'.)
+\end{enumerate}
+
+Basically, you will have three different \verb'display.o' files respectively for test1, test2, and test3, and one \verb'mesh.o' for all these tests.
+For example, for test1, you define \verb'TEST1' when compiling \verb'display.cpp', generate \verb'display1.o', and obtain \verb'display1' executable, which reads in \verb'test1.obj' and outputs results.
+
+If you correctly compile and link the files, you can run the generated \verb'display' programs and see \emph{three} different things displayed on the screen.
+If you see that, cheers! You have done it!
+
+\bigskip
+
+I believe you will meet lots of problems in this project, so I list a few below:
+\begin{enumerate}
+	\item [Q1:] Compile time error
+	\item [A1:] Maybe your \verb'g++' is out-of-date (use \verb'g++ --version' to check your version), please use the following commands to update your \verb'g++' (my Ubuntu system uses \verb'g++' 7.4.0 version) and change the default \verb'g++' version.
+\begin{lstlisting}
+sudo apt-get update
+sudo apt-get install gcc-7 g++-7
+sudo update-alternatives --config g++
+\end{lstlisting}
+
+	\item [Q2:] 
+\fbox{\begin{minipage}{\linewidth}
+\begin{flushleft}
+display.cpp:10:10: \textcolor{red}{fatal error:} mesh.h: No such file or directory\\
+ \#include \textcolor{red}{$<$mesh.h$>$}
+\end{flushleft}
+\end{minipage}}
+	\item [A2:] Please check whether you correctly add include file search path in your command.\\
+	(Hint: Use \verb'-I' command.)
+
+	\item [Q3:]
+\fbox{\begin{minipage}{\linewidth}
+\begin{flushleft}
+display.o: In function `init()':\\
+display.cpp:(.text+0x1d): undefined reference to `glClearColor'\\
+display.cpp:(.text+0x707): undefined reference to `gluPerspective'\\
+display.o: In function `main':\\
+display.cpp:(.text+0x944): undefined reference to `libTest()'\\
+display.cpp:(.text+0x979): undefined reference to `glutInit'\\
+collect2: \textcolor{red}{error}: ld returned 1 exit status
+\end{flushleft}
+\end{minipage}}
+	\item [A3:] Please check if you link the three CG libraries (libGL, libglut, libGLU) and the test library (libstest) correctly.
+
+	\item [Q4:] 
+\fbox{\begin{minipage}{\linewidth}
+\begin{flushleft}
+/usr/bin/ld: cannot find -lstest\\
+collect2: \textcolor{red}{error}: ld returned 1 exit status
+\end{flushleft}
+\end{minipage}}
+	\item [A4:] Check if you add \verb'lib' to the link file search path.\\
+	(Hint: Use \verb'-L' command.)
+
+	\item [Q5:]
+\fbox{\begin{minipage}{\linewidth}
+\begin{flushleft}
+\textcolor{red}{Error}: You do not load any models!
+\end{flushleft}
+\end{minipage}}
+	\item [A5:] Please check if you define any one of the macros (\verb'TEST1', \verb'TEST2', \verb'TEST3') when compilation.
+
+	\item [Q6:]
+\fbox{\begin{minipage}{\linewidth}
+\begin{flushleft}
+Loading PLY file test3.ply...\\
+\# Vertex: 5261\\
+\# Face: 10518\\
+Finish loading ply file.\\
+You correctly run the program!\\
+freeglut (./test3): failed to open display ''
+\end{flushleft}
+\end{minipage}}
+	\item [A6:] This is good! You have done this project! This may result from your Linux system having no GUI. If you use WSL and insist to see the output figure, you can follow \href{https://virtualizationreview.com/articles/2017/02/08/graphical-programs-on-windows-subsystem-on-linux.aspx}{this page} to obtain your results.
+
+	\item [Q7:] For any other questions, please Google or directly consult me.
+\end{enumerate}
+
+Moreover, about compiling and linking files in this tree-like structure, you can find more guidance on ECE 2400's \href{https://cornell-ece2400.github.io/ece2400-docs/ece2400-sec2-c-basics/}{webpage}.
+
+\bigskip
+To submit your homework, you need to \verb'git push' the whole \verb'CppToolchain-AutoBuilding' folder.
+But remember to remove unnecessary files like \verb'mesh.o' and \verb'display.o'.
+
+\newpage
+\subsection{Debugging}
+
+\end{document}
