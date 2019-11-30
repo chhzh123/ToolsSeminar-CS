@@ -12,9 +12,88 @@
 
 Week 3's seminar is partly based on \href{https://cornell-ece2400.github.io/ece2400-docs/ece2400-sec2-c-basics/}{Cornell ECE 2400: Computer Systems Programming} lectured by Christopher Batten in Fall 2019.
 
+\section{C/C++ Introduction}
+As discussed in seminar, we use C and C++ as introductory languages for the following reasons:
+\begin{itemize}
+	\item High-performance: C/C++ is extremely fast and is widely used in HPC.
+	\href{https://www.openmp.org/}{OpenMP} and \href{https://mpitutorial.com/tutorials/}{MPI} are two most commonly used parallel libraries based on C, which will be covered in your \emph{Parallel and Distributed Computing} course in Grade 2, \emph{Distributed Systems} in Grade 3, and \emph{High-Performance Computing} in Grade 3.
+	Specific accelerators use C-like languages to program.
+	For example, GPU uses \href{https://www.infoworld.com/article/3299703/what-is-cuda-parallel-programming-for-gpus.html}{CUDA} to program (\emph{Parallel and Distributed Computing}), and FPGA uses \href{https://www.doulos.com/knowhow/verilog_designers_guide/what_is_verilog/}{Verilog} to program (\emph{Digital Circuits} in Grade 1 and \emph{Computer Organization} in Grade 2), both of which are C language's extension.
+	\item Fundamental: C/C++ is very close to the hardware, thus makes you better understand how the computer works.
+	\emph{Operating Systems}, \emph{Computer Networking}, and \emph{Embedded Systems} in Grade 2 all require you have a good understanding of C.
+	Otherwise, you can hardly make it work with assembly and correctly run on hardware.
+	\item Influential: C/C++ influences many programming languages, including Java and C\#, as depicted in \href{https://exploring-data.com/vis/programming-languages-influence-network/}{Programming Languages Influence Network}.
+	Thus, if you learn C/C++ well, you will easily understand the primitives of other languages.
+\end{itemize}
+
+Two introductory books about C and C++ are:
+\begin{itemize}
+	\item Brian Kernighan, Dennis Ritchie, \emph{The C Programming Language (2nd ed.)}, Prentice-Hall, 1988 (\href{https://book.douban.com/subject/1139336/}{Chinese version})
+	\item Stanley B. Lippman, Josée Lajoie, Barbara E. Moo, \emph{C++ Primer (5th ed.)}, Objectwrite, 2012 (\href{https://book.douban.com/subject/25708312/}{Chinese version})
+\end{itemize}
+
+Please learn the theory of C/C++ carefully, since they may greatly influence your future courses.
+About C language's basic theory, you can see \href{https://cornell-ece2400.github.io/ece2400-docs/ece2400-T01-intro-c/}{Topic 1: Introduction to C} of \emph{Cornell ECE 2400}, or refer to my Github \href{https://github.com/chhzh123/CS-Notes/tree/master/C-Programming}{notes}.
+
+Also, pay more attention to the difference between C and C++.
+C++ is NOT C plus STL.
+C++ is more than that, with support to Object-Oriented Programming (OOP), templates and generic programming, and other modern language features.
+All of these can be found in the \href{https://book.douban.com/subject/25708312/}{\emph{C++ Primer}} book.
+
+\section{Stages of Compilation}
+C language's compilation mainly consists of the four stages listed below.
+You have to clearly know what these stages do, which will give you better understandings when you read papers or do projects about compilers or systems in the future.
+I highly recommend you to read the \href{https://csapp.cs.cmu.edu/}{\emph{Computer Systems: A Programmer's Perspective (CS:APP)}} book, Chapter 1 of which gives the overview of computer system stack.
+\begin{center}
+\begin{tikzcd}
+\text{\textit{hello.c}}\arrow{d}{\text{\textcolor{red}{Preprocessing}}}\\
+\text{\textit{hello.i}}\arrow{d}{\text{\textcolor{red}{Compilation}}}\\
+\text{\textit{hello.s}}\arrow{d}{\text{\textcolor{red}{Assembly}}}\\
+\text{\begin{tabular}{c}\textit{hello.o(bj) + printf.o}\\(Binary)\end{tabular}}\arrow{d}{\text{\textcolor{red}{Linking}}}\\
+\text{\textit{hello}}
+\end{tikzcd}
+\end{center}
+
+Some experiments on these four stages can be found in this \href{https://www.calleerlandsson.com/the-four-stages-of-compiling-a-c-program/}{webpage}, and also in \href{https://cornell-ece2400.github.io/ece2400-docs/ece2400-sec2-c-basics/}{Section 2: Compiling and Running C Programs} of Cornell ECE 2400.
+
+Common compilation options can be found \href{https://caiorss.github.io/C-Cpp-Notes/compiler-flags-options.html}{here}.
+About the difference between static libraries and dynamic libraries, you can refer to \href{https://www.learncpp.com/cpp-tutorial/introduction-to-the-compiler-linker-and-libraries/}{LearnCpp}.
+
+\section{Auto Building}
+About Makefile's usage, there are lots of resources on the Internet can be referenced to.
+Following lists a few:
+\begin{itemize}
+	\item My personal \href{https://chhzh123.github.io/2019-02-24-makefile/}{blog} in Chinese
+	\item \href{https://blog.csdn.net/weixin_38391755/article/details/80380786}{CSDN Tutorial of Makefile} in Chinese
+	\item \href{https://cornell-ece2400.github.io/ece2400-docs/ece2400-sec3-c-build-test/}{Section 3: C Build and Test Frameworks} of ECE 2400 (also covers CMake)
+	\item \href{http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/}{A Simple Makefile Tutorial}
+	\item \href{https://www.gnu.org/software/make/manual/make.html#Reference}{GNU Manual}
+\end{itemize}
+
+\section{Debugging \& Testing}
+Please refer to \href{https://cornell-ece2400.github.io/ece2400-docs/ece2400-sec4-c-test-debug/}{Section 4: C Testing and Debugging} of ECE 2400, or my \href{https://chhzh123.github.io/2019-03-16-gdb/}{manual of gdb debugging} in Chinese.
+
+ECE 2400 provides a basic framework \href{https://cornell-ece2400.github.io/ece2400-docs/ece2400-sec4-c-test-debug/}{UTEST} for testing.
+But nowadays the most commonly used testing framework may be Google's \href{https://github.com/google/googletest}{gtest}.
+For English tutorial, you can refer to \href{https://blog.jetbrains.com/rscpp/unit-testing-google-test/}{Unit Testing C++ with Google Test}, or you can see Chinese one on \href{https://www.zhihu.com/question/27313846/answer/130954707}{Zhihu}.
+
+\section{Profiling}
+The simplest profiling way is to measure the running time of a program.
+In C we can use \verb'<time.h>' to time the program.
+In C++ we use \verb'<chrono>' in C++11 standard.
+For the timing framework, please refer to \href{https://chhzh123.github.io/2019-03-31-c-timing/}{this blog} written by me.
+Also, we can use Linux's \verb'time' command to time something.
+For example, we can directly type \verb'time ./avg' to obtain the running time of the \verb'avg' program.
+The output consists of three time --- real time, user time, and system time, where we mostly care about the real time that is the wall clock time from start to finish the call.
+For more differences, please see \href{https://stackoverflow.com/questions/556405/what-do-real-user-and-sys-mean-in-the-output-of-time1}{Stack Overflow}.
+
+Other profiling tools on CPU and memory are \verb'perf', \verb'pcm', and \verb'valgrind'.
+You can find them in \href{https://cornell-ece2400.github.io/ece2400-docs/ece2400-sec5-c-profiling/}{Section 5: C Profiling} of ECE 2400, and my blog on \href{https://chhzh123.github.io/2019-02-19-pcm/}{pcm} and \href{https://chhzh123.github.io/2019-02-27-spa-extra-1/}{Valgrind}.
+
+\newpage
 \section{Assignments}
 \subsection{Auto Building}
-In this assignment, you will learn how to build a small project and make each components function correctly.
+In this assignment, you will learn how to build a small project and make each component function correctly.
 
 The project demonstrates the basic usage of the Computer Graphics (CG) library \href{https://www.opengl.org}{OpenGL}, which is commonly used in nowadays PC games.
 It reads in polygon mesh and displays the model on the screen, as shown in Fig.~\ref{fig:cactus}.
@@ -32,7 +111,7 @@ What you need to do is to \underline{\textbf{write a \emph{Makefile} or \emph{CM
 That is to say, you need NOT know how the program is working or how to use OpenGL.
 You only need to glue these files together.
 
-Firstly you should install some dependency libraries, which provides minimum support for graphical display.
+Firstly you should install some dependency libraries, which provide minimum support for graphical display.
 Type the following commands on your Linux system.
 \begin{lstlisting}
 sudo apt-get update
@@ -89,7 +168,7 @@ sudo update-alternatives --config g++
 \fbox{\begin{minipage}{\linewidth}
 \begin{flushleft}
 display.cpp:10:10: \textcolor{red}{fatal error:} mesh.h: No such file or directory\\
- \#include \textcolor{red}{$<$mesh.h$>$}
+ \#include \textcolor{red}{$<$mesh.h$>$}
 \end{flushleft}
 \end{minipage}}
 	\item [A2:] Please check whether you correctly add include file search path in your command.\\
@@ -147,12 +226,12 @@ Moreover, about compiling and linking files in this tree-like structure, you can
 
 \bigskip
 To submit your homework, you need to \verb'git push' the whole \verb'CppToolchain-AutoBuilding' folder.
-But remember to remove unnecessary files like \verb'mesh.o' and \verb'display.o'.
+But remember to remove unnecessary files like \verb'mesh.o' and \verb'display.o' before you commit.
 
 \subsection{Debugging}
 Use \verb'gdb' or other debugging tools to find the bugs in the\\
 \verb'Assignments\CppToolchain-Debugging\mergesort.c' program.
 
-For details about merge sort, you can refer to \href{https://www.geeksforgeeks.org/merge-sort/}{GeeksforGeeks}.
+For details about the merge sort, you can refer to \href{https://www.geeksforgeeks.org/merge-sort/}{GeeksforGeeks}.
 
 \end{document}
