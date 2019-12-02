@@ -63,7 +63,7 @@ About the difference between static libraries and dynamic libraries, you can ref
 About Makefile's usage, there are lots of resources on the Internet can be referenced to.
 Following lists a few:
 \begin{itemize}
-	\item My personal \href{https://chhzh123.github.io/2019-02-24-makefile/}{blog} in Chinese
+	\item My \href{https://chhzh123.github.io/blogs/2019-02-24-makefile/}{blog} in Chinese
 	\item \href{https://blog.csdn.net/weixin_38391755/article/details/80380786}{CSDN Tutorial of Makefile} in Chinese
 	\item \href{https://cornell-ece2400.github.io/ece2400-docs/ece2400-sec3-c-build-test/}{Section 3: C Build and Test Frameworks} of ECE 2400 (also covers CMake)
 	\item \href{http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/}{A Simple Makefile Tutorial}
@@ -71,7 +71,7 @@ Following lists a few:
 \end{itemize}
 
 \section{Debugging \& Testing}
-Please refer to \href{https://cornell-ece2400.github.io/ece2400-docs/ece2400-sec4-c-test-debug/}{Section 4: C Testing and Debugging} of ECE 2400, or my \href{https://chhzh123.github.io/2019-03-16-gdb/}{manual of gdb debugging} in Chinese.
+Please refer to \href{https://cornell-ece2400.github.io/ece2400-docs/ece2400-sec4-c-test-debug/}{Section 4: C Testing and Debugging} of ECE 2400, or my \href{https://chhzh123.github.io/blogs/2019-03-16-gdb/}{manual of gdb debugging} in Chinese.
 
 ECE 2400 provides a basic framework \href{https://cornell-ece2400.github.io/ece2400-docs/ece2400-sec4-c-test-debug/}{UTEST} for testing.
 But nowadays the most commonly used testing framework may be Google's \href{https://github.com/google/googletest}{gtest}.
@@ -81,14 +81,14 @@ For English tutorial, you can refer to \href{https://blog.jetbrains.com/rscpp/un
 The simplest profiling way is to measure the running time of a program.
 In C we can use \verb'<time.h>' to time the program.
 In C++ we use \verb'<chrono>' in C++11 standard.
-For the timing framework, please refer to \href{https://chhzh123.github.io/2019-03-31-c-timing/}{this blog} written by me.
+For the timing framework, please refer to \href{https://chhzh123.github.io/blogs/2019-03-31-c-timing/}{this blog} written by me.
 Also, we can use Linux's \verb'time' command to time something.
 For example, we can directly type \verb'time ./avg' to obtain the running time of the \verb'avg' program.
 The output consists of three time --- real time, user time, and system time, where we mostly care about the real time that is the wall clock time from start to finish the call.
 For more differences, please see \href{https://stackoverflow.com/questions/556405/what-do-real-user-and-sys-mean-in-the-output-of-time1}{Stack Overflow}.
 
 Other profiling tools on CPU and memory are \verb'perf', \verb'pcm', and \verb'valgrind'.
-You can find them in \href{https://cornell-ece2400.github.io/ece2400-docs/ece2400-sec5-c-profiling/}{Section 5: C Profiling} of ECE 2400, and my blog on \href{https://chhzh123.github.io/2019-02-19-pcm/}{pcm} and \href{https://chhzh123.github.io/2019-02-27-spa-extra-1/}{Valgrind}.
+You can find them in \href{https://cornell-ece2400.github.io/ece2400-docs/ece2400-sec5-c-profiling/}{Section 5: C Profiling} of ECE 2400, and my blogs on \href{https://chhzh123.github.io/blogs/2019-02-19-pcm/}{pcm} and \href{https://chhzh123.github.io/blogs/2019-02-27-spa-extra-1/}{Valgrind}.
 
 \newpage
 \section{Assignments}
