@@ -1,0 +1,211 @@
+\documentclass{../TexTemplate/myslide}
+\usepackage[slide,table,cpp]{../TexTemplate/mypackage}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\title[ToolsSeminar]{Tools Seminar}
+\subtitle{Week 4 - \LaTeX{} Configuration \& Usage\protect\footnote{This slide is based on pppppass's \href{https://github.com/pppppass/ToolsSeminar}{ToolsSeminar} in PKU}}
+\author[chhzh123]{Hongzheng~Chen}
+\date[Dec 6, 2019]{Dec 6, 2019}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\section{Introduction}
+\begin{frame}
+\sectionpage
+\end{frame}
+
+\subsection{\TeX{} and \LaTeX}
+\begin{frame}{What is \TeX{} and \LaTeX?}
+\begin{enumerate}
+\item \TeX{} is a typesetting system originally designed by Donald Knuth.\\
+(\emph{The Art of Computer Programming})
+\item \LaTeX{} is a typesetting system based on \TeX{} designed \\
+originally designed by Lesile Lamport.
+\item Basic idea of \TeX{} and \LaTeX{}: ``What you think is what you get'', \\ distinguished from ``What you see is what you get'' (WYSISYG)
+\item Programming mechanism of \TeX{} and \LaTeX{} is based on macros.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Why to Use \LaTeX?}
+\begin{enumerate}[<+->]
+\item Beautiful and elegant layout and fonts
+\item Full and explicit control of details
+\item Very easy to handle structured materials \\
+e.g. papers, books, notes, experimental reports
+\item De facto standard for mathematics, physics and computer science
+\item Widely used math modes for mathematical formulas \\
+e.g. Markdown, websites and even daily communication
+\item A great number of packages, and an activate community
+\end{enumerate}
+\pause
+When not to use \LaTeX{}: the material is highly unstructured
+\end{frame}
+
+\subsection{Basic Concepts}
+\begin{frame}{\TeX{} \& \LaTeX{} Engines}
+\begin{itemize}
+	\item \href{https://www.tug.org/texlive/}{TeXLive} (cross-platform), \href{https://www.tug.org/mactex/}{MacTeX} (Mac OSX), MikTeX (Windows)
+	\item \href{http://www.ctex.org/CTeXDownload}{CTeX} (Chinese)
+	\item \href{https://www.overleaf.com/project}{Overleaf} / shareLaTeX (online)
+\end{itemize}
+\end{frame}
+% \item Whitespaces
+% \item Environments and groups
+% \item Math modes: inline and displayed
+% \item Packages and document classes
+% \item Floats: figures and tables
+% \item Bibliography tools
+% input/include
+\begin{frame}[fragile]{Basic Structure of a Document}
+\begin{enumerate}
+\item Command \verb"\documentclass{...}":
+\verb"article", \verb"ctexart" and \verb"beamer"
+\item Preamble: definitions and \verb"\usepackage{...}"s
+\item Top matters: \verb"\title{...}", \verb"\author{...}" and \verb"\date{...}"
+\item Begin a document environment: \verb"\begin{document}"
+\item Section: \verb"\section{...}", \verb'\subsection{...}' and so on
+\item Paragraphs separated by a single blank line
+\item End a document environment: \verb"\end{document}"
+\end{enumerate}
+* Demo
+\end{frame}
+
+\section{Basic Typesetting}
+\begin{frame}
+\sectionpage
+\end{frame}
+
+\subsection{Text Mode}
+\begin{frame}[fragile]{Text Formatting}
+\begin{enumerate}
+\item Comments: \verb'%'
+\item Special characters: \verb"\&", \verb"\_"
+\item Whitespace: \verb' ', \verb"\ ", \verb"\!", \verb"\hspace{...}"\\
+Use \emph{two} blank lines to initiate a new paragraph (newline only adds one whitespace for English)
+\item Paragraphs: \verb"\\" (no indent), \verb"\par" (indent), and two blank lines (indent)
+\item Orthogonal coordinates of fonts: \\
+English: \verb"\textbf{...}", \verb"\textrm{...}", \verb"\textit{...}" \\
+Chinese: \verb"\kaishu", \verb"\heiti"
+\item Emphasize: \verb"\emph{...}"
+\item Font size: \verb"\tiny", \verb"\small", \verb"\large", \verb"\Large", \verb"\LARGE"
+\item Align: \verb"\centering", \verb"\raggedright"
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Basic Environments}
+\verb'\begin{environment_name}...\end{environment_name}'
+\begin{enumerate}
+\item Quotes: \verb"quote"
+\item Lists: \verb"enumerate", \verb"itemize" and package \verb"enumitem"
+\item Theorems: \verb"\newtheorem" and package \verb"ntheorem"
+\item Verbatim: \verb"\verb'...'"
+\item Program lists: \verb"lstlisting" and package \verb"listings" / \verb'minted'
+\end{enumerate}
+\end{frame}
+
+\subsection{Math Mode}
+\begin{frame}[fragile]{Mathematical Symbols}
+Use \verb"$" for inline formulas, and \verb"\[\]" for displayed ones
+\begin{enumerate}
+\item Types: normal texts, operators, binary operators, relations accents
+\item Fonts: \verb"\mathrm{...}", \verb"\mathbf{...}"
+\item Normal symbols: \verb"\exists", \verb"\forall"
+\item Operators: \verb"\log", \verb"\sin"
+\item Binary operators: \verb"+", \verb"\setminus", \verb"\otimes"
+\item Relations: \verb"\le", \verb"\equiv", \verb"\approx"
+\item Whitespace: \verb"\,", \verb"\!" \\
+frequently used: \verb"\mathop{\mathrm{d}\!} x"
+\end{enumerate}
+Function lists: \url{https://katex.org/docs/supported.html}
+\end{frame}
+
+\begin{frame}[fragile]{Formula Structures}
+\begin{enumerate}
+\item Subscript and superscript: \verb"_" and \verb"^"
+\item Fraction and binominals: \verb"\frac{...}{...}", \verb"\binom{...}{...}"
+\item Roots and radicals: \verb"\sqrt{...}"
+\item Huge operators: \verb"\sum", \verb"\product", \verb"\bigoplus"
+\item Delimiters: \verb"\left", \verb"\right", and brakets like \verb"\lfloor"
+\item Matrices: environment \verb"matrix", \verb"bmatrix" and package \verb"amsmath"
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Mathematical Environments}
+\begin{enumerate}
+\item Basic equations: environment \verb"equation"
+\item Matrices: environment \verb"matrix", \verb"bmatrix"
+\item If-cases: environment \verb"cases"
+\item Gathered equations: environment \verb"gather"
+\item Aligned equations: environment \verb"align"
+\item Formulas in formulas: environment \verb"split", \verb"gathered" and \verb"aligned"
+\end{enumerate}
+\end{frame}
+
+\section{Further Topics}
+\begin{frame}
+\sectionpage
+\end{frame}
+
+\begin{frame}[fragile]{Bibliography}
+\begin{enumerate}
+\item BibTeX
+\item Footnote: \verb"\footnote{...}"
+\item Cite: \verb"\cite{...}"
+\item Display: \verb"\bibliography{...}"
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Floats}
+\begin{enumerate}
+\item Environment \verb"figure"
+\item Environment \verb"table"
+\item Package \verb"graphicx"
+\item \verb'[htbp]', package \verb'float' and \verb'[H]'
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Tables}
+\begin{enumerate}
+\item Environment \verb"tabular" and \verb"array"
+\item Column formats: e.g. \verb"|c|rrrlr|"
+\item Align: \verb"&" and \verb"\\"
+\item Row lines: \verb"\hline"
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Other Useful Packages}
+\begin{enumerate}
+\item Layout: \verb"geometry"
+\item Longer table: \verb"longtable"
+\item Algorithms: \verb"algorithm2e" or \verb"algorithm"
+\item Hyper-links: \verb"hyperref"
+\item Include .pdf files: \verb"pdfpages"
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Other Useful Things}
+\begin{itemize}
+	\item Markdown $\times$ \LaTeX{} (Web support)
+	\begin{itemize}
+		\item KaTeX
+		\item MathJax
+	\end{itemize}
+	\item VS Code $\times$ \LaTeX
+	\begin{itemize}
+		\item Make sure you have installed TeXLive first
+		\item LaTeX Workshop Extension
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\end{document}
