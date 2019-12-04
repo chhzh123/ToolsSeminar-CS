@@ -52,20 +52,21 @@ When not to use \LaTeX{}: the material is highly unstructured
 \end{frame}
 
 \subsection{Basic Concepts}
-\begin{frame}{\TeX{} \& \LaTeX{} Engines}
+\begin{frame}[fragile]{\TeX{} \& \LaTeX{} Distributions \& Engines}
+\LaTeX{} Distributions:
 \begin{itemize}
 	\item \href{https://www.tug.org/texlive/}{TeXLive} (cross-platform), \href{https://www.tug.org/mactex/}{MacTeX} (Mac OSX), MikTeX (Windows)
 	\item \href{http://www.ctex.org/CTeXDownload}{CTeX} (Chinese)
 	\item \href{https://www.overleaf.com/project}{Overleaf} / shareLaTeX (online)
 \end{itemize}
+Engines:
+\begin{itemize}
+	\item PdfLaTeX: \verb'.dvi' $\to$ \verb'.pdf'
+	\item XeLaTeX: Unicode (UTF-8)
+	\item LuaLaTeX: Support script language Lua
+\end{itemize}
 \end{frame}
-% \item Whitespaces
-% \item Environments and groups
-% \item Math modes: inline and displayed
-% \item Packages and document classes
-% \item Floats: figures and tables
-% \item Bibliography tools
-% input/include
+
 \begin{frame}[fragile]{Basic Structure of a Document}
 \begin{enumerate}
 \item Command \verb"\documentclass{...}":
@@ -197,14 +198,25 @@ Function lists: \url{https://katex.org/docs/supported.html}
 \begin{itemize}
 	\item Markdown $\times$ \LaTeX{} (Web support)
 	\begin{itemize}
-		\item KaTeX
-		\item MathJax
+		\item \href{https://katex.org/}{KaTeX}
+		\item \href{https://www.mathjax.org/}{MathJax}
 	\end{itemize}
 	\item VS Code $\times$ \LaTeX
 	\begin{itemize}
 		\item Make sure you have installed TeXLive first
-		\item LaTeX Workshop Extension
+		\item \href{https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop}{LaTeX Workshop Extension}
 	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Other Useful Things}
+\begin{itemize}
+	\item \href{https://mathpix.com/}{Mathpix}: PDFs or handwritings $\to$ \LaTeX
+	\item \href{http://detexify.kirelabs.org/classify.html}{Detexify}: Handwriting symbols $\to$ \LaTeX
+	\item \href{https://www.tablesgenerator.com/}{Tables Generator}
+	\item \href{http://excel2latex.com/}{Excel2LaTeX (online)}
+	\item \href{https://ctan.org/pkg/excel2latex?lang=en}{Excel2LaTeX (macro)}
+	\item \href{https://pandoc.org/}{Pandoc}: Markdown, Word, \LaTeX, etc. translation
 \end{itemize}
 \end{frame}
 
