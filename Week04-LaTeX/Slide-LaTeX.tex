@@ -5,7 +5,7 @@
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
 \title[ToolsSeminar]{Tools Seminar}
-\subtitle{Week 4 - \LaTeX{} Configuration \& Usage\protect\footnote{This slide is based on pppppass's \href{https://github.com/pppppass/ToolsSeminar}{ToolsSeminar} in PKU}}
+\subtitle{Week 4 - \LaTeX{} Configuration \& Usage\protect\footnote{This slide is partly based on pppppass's \href{https://github.com/pppppass/ToolsSeminar}{ToolsSeminar} in PKU}}
 \author[chhzh123]{Hongzheng~Chen}
 \date[Dec 6, 2019]{Dec 6, 2019}
 
@@ -30,7 +30,7 @@
 \item \TeX{} is a typesetting system originally designed by Donald Knuth.\\
 (\emph{The Art of Computer Programming})
 \item \LaTeX{} is a typesetting system based on \TeX{} designed \\
-originally designed by Lesile Lamport.
+originally designed by Lesile Lamport. $\to$ \LaTeX 2$\varepsilon$
 \item Basic idea of \TeX{} and \LaTeX{}: ``What you think is what you get'', \\ distinguished from ``What you see is what you get'' (WYSISYG)
 \item Programming mechanism of \TeX{} and \LaTeX{} is based on macros.
 \end{enumerate}
@@ -116,7 +116,7 @@ Chinese: \verb"\kaishu", \verb"\heiti"
 
 \subsection{Math Mode}
 \begin{frame}[fragile]{Mathematical Symbols}
-Use \verb"$" for inline formulas, and \verb"\[\]" for displayed ones
+Use \verb"$" for inline formulas, and \verb"\[\]" for displayed ones (or \verb'\displaystyle')
 \begin{enumerate}
 \item Types: normal texts, operators, binary operators, relations accents
 \item Fonts: \verb"\mathrm{...}", \verb"\mathbf{...}"
@@ -159,11 +159,22 @@ Function lists: \url{https://katex.org/docs/supported.html}
 
 \begin{frame}[fragile]{Bibliography}
 \begin{enumerate}
-\item BibTeX
+\item BibTeX or \verb'thebibliography' environment
 \item Footnote: \verb"\footnote{...}"
 \item Cite: \verb"\cite{...}"
-\item Display: \verb"\bibliography{...}"
+\item Display:
+\begin{itemize}
+\item \verb'\bibliographystyle{...}': plain, unsrt
+\item \verb"\bibliography{...}"
+\end{itemize}
 \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Macros}
+\begin{itemize}
+	\item \verb'\def'
+	\item \verb'\newcommand'
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Floats}
@@ -172,6 +183,7 @@ Function lists: \url{https://katex.org/docs/supported.html}
 \item Environment \verb"table"
 \item Package \verb"graphicx"
 \item \verb'[htbp]', package \verb'float' and \verb'[H]'
+\item Use \verb'\ref{...}' to cross reference
 \end{enumerate}
 \end{frame}
 
