@@ -102,31 +102,32 @@ The pdf file is attached in \verb'Assignments/LaTeX/exe_ch.pdf'.
 You should make your generated contents \emph{as similar as} those in \verb'exe_ch.pdf'.
 Some hints:
 \begin{enumerate}
-	\item Use \verb'\documentclass[UTF8,11pt]{ctexart}'
+	\item Use \verb'\documentclass[UTF8,11pt]{ctexart}'.
 	\item Include the following packages:
 	\begin{itemize}
 		\item \verb'amsthm' for theorem environment.
 		\item \verb'amsfonts' for bold math symbols.
 		\item \verb'amsmath' for matrix environment.
 		\item \verb'graphicx' for figure environment.
-		\item \verb'geometry' for page size, put \verb'\geometry{scale=0.8}' in preamble.
+		\item \verb'geometry' for page size, and put \verb'\geometry{scale=0.8}' in preamble.
 	\end{itemize}
 	\item Insert whitespaces between Chinese and formulas, but no spaces between Chinese and punctuation marks are needed.
 	\item Even in Chinese article, you should use \verb'.' as period.
 	\item Use sth. like 图\verb'\ref{fig:1}' to cross reference (including figures, equations, and tables). Avoid directly writing 图 1.
+	\item Figures commonly use \verb'[htbp]' to align, meaning try putting \underline{h}ere first, then \underline{t}op, \underline{b}ottom, and next \underline{p}age. For more about alignment of floating environments, you can refer to \href{http://web.mit.edu/molly/Public/mini/figtab.pdf}{MIT FigTab} or \href{https://tex.stackexchange.com/questions/2275/keeping-tables-figures-close-to-where-they-are-mentioned}{TeX Stackexchange}.
 	\item If the equations have numbering at the right, use \verb'equation' environment.
 	Otherwise, you can directly use \verb'\[...\]' for display.
 	\item Commonly, vectors use bold notation like $\mathbf{x}$ (\verb'\mathbf{...}') and sets use blackboard bold typeface like $\mathbb{R}$ (\verb'\mathbb{...}'). Math operations are in straight font like $\log$ (\verb'$\log$') not $log$ (\verb'$log$') in Italic font.
 	\item Using \verb'\left(...\right)' can make the parenthesis larger.
-	\item The figure is provided in \verb'Assignments/LaTeX/fig/function.pdf'.
+	\item The figure needed inserting is provided in \verb'Assignments/LaTeX/fig/function.pdf'.
 	\item Be careful about whether the symbols are in displayed mode.
-	\item If you do not know how to type a symbol, please find \href{https://katex.org/docs/supported.html}{here}.
+	\item If you do not know how to type some specific symbols, please find \href{https://katex.org/docs/supported.html}{here}.
 \end{enumerate}
 
 \subsection{English Academic Paper}
 You need to use the ACM conference template to generate a short academic paper shown below.
 The pdf file is attached in \verb'Assignments/LaTeX/exe_en.pdf'.
-\begin{figure}[H]
+\begin{figure}[!t]
 \centering
 \includegraphics[width=0.7\linewidth]{../Assignments/LaTeX/exe_en.pdf}
 \end{figure}
@@ -136,9 +137,11 @@ Some hints:
 	\item The template file \verb'acmart.cls' is provided, or you can directly use \verb'\documentclass[sigconf]{acmart}' if you have installed the TeXLive distribution.
 	\item \verb'sample-sigconf.tex' is an official sample provided by ACM.
 	You can follow this sample to generate the corresponding pdf.
+	\item \verb'algorithm' and \verb'algorithmic' packages are used for generating pseudocode. Their usage can be found in \href{https://www.overleaf.com/learn/latex/algorithms}{Overleaf} or \href{https://en.wikibooks.org/wiki/LaTeX/Algorithms}{Wikibooks}.
 	\item Use your \verb'bib' file in Week 2 to generate cites and references, and the \verb'bibliographystyle' should be set to \verb'unsrt' making sure the cites are in order.
-	\item You \verb'bib' file should at least include \verb'title', \verb'booktitle', \verb'author', and \verb'year' keys for each item.
-	And all these items should use \verb'@inproceedings' format. Otherwise, your generated file will be different from mine.
+	\item Your \verb'bib' file should at least include \verb'title', \verb'booktitle', \verb'author', and \verb'year' keys for each item.
+	And all these items should use \verb'@inproceedings' format. Otherwise, your generated file will be different from the provided pdf.
+	\item All the citations and reference of tables, algorithms, figures, etc., should use cross reference, i.e. \verb'\cite{...}' and \verb'\ref{...}'.
 \end{enumerate}
 
 \end{document}
