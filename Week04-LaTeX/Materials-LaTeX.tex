@@ -83,11 +83,62 @@ Also, \href{https://www.wolfram.com/mathematica}{Mathematica} supports direct tr
 
 Markdown inherently supports \LaTeX{} if the website has included the script of \href{https://katex.org/}{KaTeX} or \href{https://www.mathjax.org/}{MathJax}. You can write \LaTeX{} symbols in Markdown as if in \LaTeX{} editors. Inline formulas are enclosed by \verb'$...$', while \verb'$$...$$' is used for displayed ones.
 
-Last but not least, when you are writing \LaTeX{} in Chinese or English, there are lots of specifications you need to pay attention to, which can be referred by \href{https://zhuanlan.zhihu.com/p/29587837}{this article}.
+Last but not least, when you are writing \LaTeX{} in Chinese or English, there are lots of specifications you need to pay attention to, which can be referred by \href{https://web.stanford.edu/class/ee364b/latex_templates/template_notes.pdf}{\emph{\LaTeX{} Style Guide for EE 364B}}, \href{https://www.ams.org/publications/authors/AMS-StyleGuide-online.pdf}{\emph{AMS Style Guide}}, and \href{https://zhuanlan.zhihu.com/p/29587837}{this article} in Chinese.
 
 
 \newpage
 \section{Assignment}
+In this week's assignment, you need to use \LaTeX{} to generate two documents, one for Chinese notes, and another for English academic paper.
+Once you finished, the source \verb'tex' files and the generated \verb'pdf' files should all be pushed to Github.
 
+\subsection{Chinese Notes}
+You need to start from scratch and generate the note shown below, which consists of two questions and answers extracted from your math books.
+The pdf file is attached in \verb'Assignments/LaTeX/exe_ch.pdf'.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{../Assignments/LaTeX/exe_ch.pdf}
+\end{figure}
+
+You should make your generated contents \emph{as similar as} those in \verb'exe_ch.pdf'.
+Some hints:
+\begin{enumerate}
+	\item Use \verb'\documentclass[UTF8,11pt]{ctexart}'
+	\item Include the following packages:
+	\begin{itemize}
+		\item \verb'amsthm' for theorem environment.
+		\item \verb'amsfonts' for bold math symbols.
+		\item \verb'amsmath' for matrix environment.
+		\item \verb'graphicx' for figure environment.
+		\item \verb'geometry' for page size, put \verb'\geometry{scale=0.8}' in preamble.
+	\end{itemize}
+	\item Insert whitespaces between Chinese and formulas, but no spaces between Chinese and punctuation marks are needed.
+	\item Even in Chinese article, you should use \verb'.' as period.
+	\item Use sth. like 图\verb'\ref{fig:1}' to cross reference (including figures, equations, and tables). Avoid directly writing 图 1.
+	\item If the equations have numbering at the right, use \verb'equation' environment.
+	Otherwise, you can directly use \verb'\[...\]' for display.
+	\item Commonly, vectors use bold notation like $\mathbf{x}$ (\verb'\mathbf{...}') and sets use blackboard bold typeface like $\mathbb{R}$ (\verb'\mathbb{...}'). Math operations are in straight font like $\log$ (\verb'$\log$') not $log$ (\verb'$log$') in Italic font.
+	\item Using \verb'\left(...\right)' can make the parenthesis larger.
+	\item The figure is provided in \verb'Assignments/LaTeX/fig/function.pdf'.
+	\item Be careful about whether the symbols are in displayed mode.
+	\item If you do not know how to type a symbol, please find \href{https://katex.org/docs/supported.html}{here}.
+\end{enumerate}
+
+\subsection{English Academic Paper}
+You need to use the ACM conference template to generate a short academic paper shown below.
+The pdf file is attached in \verb'Assignments/LaTeX/exe_en.pdf'.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{../Assignments/LaTeX/exe_en.pdf}
+\end{figure}
+
+Some hints:
+\begin{enumerate}
+	\item The template file \verb'acmart.cls' is provided, or you can directly use \verb'\documentclass[sigconf]{acmart}' if you have installed the TeXLive distribution.
+	\item \verb'sample-sigconf.tex' is an official sample provided by ACM.
+	You can follow this sample to generate the corresponding pdf.
+	\item Use your \verb'bib' file in Week 2 to generate cites and references, and the \verb'bibliographystyle' should be set to \verb'unsrt' making sure the cites are in order.
+	\item You \verb'bib' file should at least include \verb'title', \verb'booktitle', \verb'author', and \verb'year' keys for each item.
+	And all these items should use \verb'@inproceedings' format. Otherwise, your generated file will be different from mine.
+\end{enumerate}
 
 \end{document}
