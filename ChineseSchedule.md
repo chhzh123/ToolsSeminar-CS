@@ -18,16 +18,20 @@
 * 性能剖析 time、perf、valgrind
 
 ## Week 4 - LaTeX配置与使用
-* 环境配置 CTex/TexLive、Overleaf
+* 环境配置 TexLive、Overleaf
 * 参考文献 BibTex
-* 常用包 lstlisting、algorithm
+* 常用包 graphicx、geometry、algorithm
 
-## Week 5 - Python配置与标准库
-* 环境配置 Anaconda、pip、jupyter
-* 标准库 time、datetime、random、logging、argparse、re
+## Week 5 - Python基础
+* 基本数据类型 Number, String, List, Tuple, Dictionary, Set
+* 基本操作 List comprehension, pattern matching
+* 函数 lambda expression, functional programming
+* 动态类型
 
 ## Week 6 - 科学计算
-* numpy、matplotlib、Mathematica/Maple/Matlab
+* 环境配置 Anaconda、pip、jupyter
+* 标准库 time、datetime、random、logging、argparse、re
+* 科学计算 numpy、matplotlib、Mathematica
 
 ## Week 7 - 机器学习
 * sklearn

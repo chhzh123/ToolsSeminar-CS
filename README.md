@@ -1,20 +1,20 @@
 # Tools Seminar
 
-This is a repository of the seminar about tools in computer science.
+This is a repository of the seminar about tools in computer science held in SYSU.
 The schedule is listed below.
 
-|  | Topic | Main Tools |
-| :--: | :--: | :--: |
-| Week 1 | Basic Configuration | VS Code, Linux (WSL), git |
-| Week 2 | Markup languages & Scientific Literature | XML, Markdown, Zotero |
-| Week 3 | C/C++ Toolchain | gcc, Makefile, gdb, time, perf |
-| Week 4 | LaTeX configuration & usage | Overleaf, LaTeX, BibTeX |
-| Week 5 | Python & standard library | anaconda, pip, jupyter |
-| Week 6 | Scientific Computing | numpy, matplotlib, MMA |
-| Week 7 | Machine Learning | sklearn |
-| Week 8 | Deep Learning | pytorch, visdom |
-| Week 9 | Visualization | tikz, visio |
-| Week 10 | Parallel Computing | OpenMP, MPI, Cilk, SIMD |
+|  | Date | Topic | Main Tools |
+| :--: | :--: | :--: | :--: |
+| Week 1 | Nov 15 | Basic Configuration | VS Code, Linux (WSL), git |
+| Week 2 | Nov 22 | Markup languages & Scientific Literature | XML, Markdown, Zotero |
+| Week 3 | Nov 29 | C/C++ Toolchain | gcc, Makefile/CMake, gdb, time, perf |
+| Week 4 | Dec 6 | LaTeX configuration & usage | Overleaf/TexLive, LaTeX, BibTeX |
+| Week 5 | Dec 13 | Python Basics | Build-in objects and operations |
+| Week 6 | TBD | Scientific Computing | anaconda, numpy, matplotlib, MMA |
+| Week 7 | TBD | Machine Learning | sklearn |
+| Week 8 | TBD | Deep Learning | pytorch, visdom |
+| Week 9 | TBD | Visualization | tikz, visio |
+| Week 10 | TBD |Parallel Computing | OpenMP, MPI, Cilk, SIMD |
 
 ## Acknowledgements
 * Week 1, 4 is partly based on *[Tools Seminar](https://github.com/pppppass/ToolsSeminar)* in applied mathematics held in PKU
