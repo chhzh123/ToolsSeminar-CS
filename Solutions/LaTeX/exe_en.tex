@@ -1,0 +1,87 @@
+\documentclass[sigconf]{acmart}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+
+\title{A Short English Academic Paper}
+
+\author{Your Name}
+\affiliation{%
+  \institution{Your Affiliation}
+}
+\email{your.name@email.com}
+
+
+\begin{document}
+
+\begin{abstract}
+This article illustrates the common usage of \LaTeX{} commands for English academic papers.
+ACM conference format is used to style the document.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+This is the Introduction part.
+Be careful of the indentation of English articles.
+The sentence following the section title has no indentation.
+
+See! There is an indentation from the second paragraph.
+
+\section{Related Works}
+Once you mention others' methods, conclusions, experiments, etc., you should cite their works.
+For example, AI~\cite{sivathanu_astra_2019,hua_boosting_2019,deng_tie_2019,frankle_lottery_2019} and graph~\cite{ma_neugraph_2019,besta_slim_2019,dhulipala_low-latency_2019,dong_network_2019} are two hot topics nowadays.
+
+\section{Background}
+Here gives the background.
+
+\section{Methodologies}
+Commonly, we use \emph{Italic} fonts instead of \textbf{bold} fonts to emphasize something in English articles.
+
+\subsection{Methodology 1}
+We do not directly list source codes in the paper, but use pseudocode like Alg.~\ref{alg:count_ones} to demonstrate our algorithms.
+\begin{algorithm}[htbp]
+\caption{Count \# of ones}
+\label{alg:count_ones}
+\small
+\begin{algorithmic}[1]  
+\REQUIRE array $a$, size $n$
+\STATE Initialize $cnt = 0$
+\FOR{$i = 0$ \textbf{to} $n-1$}
+\IF{$a[i]$ is $1$}
+\STATE $cnt \gets cnt + 1$
+\ENDIF
+\ENDFOR
+\RETURN $cnt$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Methodology 2}
+More methodologies here.
+
+\section{Experiments}
+This section firstly introduces the experimental settings and then presents the experimental results.
+
+\subsection{Experimental Settings}
+We use the \verb'acmart' \LaTeX{} template to format this article.
+
+\subsection{Experimental Results}
+Some experimental results are shown in Table~\ref{tab:ex}.
+\begin{table}[htbp]
+\caption{A table example}
+\label{tab:ex}
+\begin{tabular}{|c|c|c|}\hline
+Col 1 & Col 2 & Col 3\\\hline
+Line 1 & & \\\hline
+\end{tabular}
+\end{table}
+
+\section{Conclusions}
+This article gives a basic structure of English academic paper and the usage of \verb'acmart' template.
+
+\section*{Acknowledgement}
+This section can be omitted. But you should make sure the contents have filled the whole pages.
+
+\bibliographystyle{unsrt}
+\bibliography{exe_en.bib}
+
+\end{document}
