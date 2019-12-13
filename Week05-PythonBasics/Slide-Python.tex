@@ -61,7 +61,33 @@ Introductory languages for top CS schools
 \end{figure}
 \end{frame}
 
-\begin{frame}{Official support}
+\begin{frame}{Why learn another programming language (PL)?}
+\begin{flushleft}
+\textbf{You have to find the best tool to finish one job.}
+\end{flushleft}
+Different languages may
+\begin{itemize}
+	\item Be efficient in specific domains (why don't you write assembly?)
+	\item Have specific features making it unique
+\end{itemize}
+\pause
+\bigskip
+Thus, learning another PL helps to
+\begin{itemize}
+	\item See key components across different programming languages
+	\item See what paradigms certain languages prioritize
+	\item Get deep into the software foundation \& computer systems % compiler, interpreter
+\end{itemize}
+\end{frame}
+% Why another language?
+% The goal of this class is not to teach Python, but rather to teach a variety of programming techniques and core concepts.
+
+% * For example, in both Python and Scheme, we can write functions and store data in lists. 
+% * (Paradigms) Scheme is a functional language. Every line of code is an expression that evaluates to a value.
+% 	* The entirety of Scheme is written entirely with expressions. Python has assignment statements, while statements, def statements, etc.
+% * Scheme is an easier language to parse than Python given its minimal syntax.
+
+\begin{frame}{Python official support}
 Official website: \url{https://www.python.org/}
 \begin{itemize}
 \item Python 2.7: \xmark Jan 1, 2020
@@ -106,7 +132,7 @@ Byte code is independent of machines
 
 \subsection{Introduction}
 \begin{frame}[fragile]{So what does ``interpret'' means?}
-Just type \verb'python' in your Unix cmd
+Just type ``\verb'python''' in your Unix cmd
 \begin{itemize}
 	\item You need not write a file first and compile it
 	\item But type something, it will \textbf{interactively} return you results!
@@ -115,9 +141,10 @@ Just type \verb'python' in your Unix cmd
 
 \subsection{Basic Types and Operations}
 \begin{frame}[fragile]{Object, Everything is Object!!!}
-\begin{itemize}
+\begin{itemize}[<+->]
 \item No \verb'int', \verb'uint', \verb'long', etc.
 \item Python is \textcolor{red}{dynamic type}!
+\item Everything in python is an object!
 \item Primitive object types
 \begin{center}
 \begin{tabular}{ll}\hline
@@ -232,17 +259,22 @@ For more, please refer to \url{http://blog.xiayf.cn/2013/01/26/python-string-for
 
 \begin{frame}[fragile]{List Comprehension}
 \[{\displaystyle S=\{\underbrace {2\cdot x} _{\color {blue}{\text{output expression}}}\mid \underbrace {x} _{\color {blue}{\text{variable}}}\in \underbrace {\mathbb {N} } _{\color {blue}{\text{input set}}},\ \underbrace {x^{2}>3} _{\color {blue}{\text{predicate}}}\}}\]
+\pause
 \begin{itemize}
 \item \verb'[2*x for x in range(N) if x**2 > 3]'
+\pause
 \item \verb'(2*x for x in itertools.count() if x**2 > 3)', \verb'next()'
+\pause
 \item You can filter out prime numbers in such a concise way!
 \begin{lstlisting}[language=python]
 >>> [x for x in range(2,N)
 ...    if all(x % y != 0 for y in range(2,x))]
 \end{lstlisting}
 \end{itemize}
-* This is some kind of functional programming (FP), e.g. \href{https://www.haskell.org/}{Haskell}
+\pause
+* This is some kind of functional programming (FP), e.g. \href{https://www.haskell.org/}{Haskell}. Many FP concepts in Python are borrowed from Haskell.
 \end{frame}
+% [<map exp> for <name> in <iter exp> if <filter exp>]
 
 \begin{frame}[fragile]{Pattern matching}
 \begin{lstlisting}[language=python]
@@ -258,6 +290,7 @@ For more, please refer to \url{http://blog.xiayf.cn/2013/01/26/python-string-for
 >>> *init, last = seq
 [1, 2, 3], 4
 \end{lstlisting}
+\small * Comments use \#
 \end{frame}
 
 \begin{frame}[fragile]{Dictionary}
@@ -280,17 +313,18 @@ A fast way to remove replica
 \end{frame}
 
 \subsection{Control Flow}
-\begin{frame}[fragile]{Control flow}
+\begin{frame}[fragile]{Python's paradigm}
 \begin{itemize}
-	\item Python is a multi-paradigm programming language (DP, FP, OOP, etc.)
-	\item Use \textbf{indentation} to distinguish commands
+	\item Python is a multi-paradigm programming language (IP, FP, OOP, etc.)
+	\item Use \textbf{indentation} to distinguish commands (strictly)
 	\item You can add \verb';', but it is no need
+	\item \textbf{Control} is the feature of Imperative Programming (IP)
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Condition}
 \begin{itemize}
-	\item \verb'and', \verb'or', \verb'not', \underline{\textbf{in}} (even have \verb'not in'!)
+	\item \verb'and', \verb'or', \verb'not', \textbf{in} (even have \textbf{not in}!)
 	\item \verb'True', \verb'False'
 	\item \verb'if ... elif ... else ...'
 	\begin{itemize}
@@ -316,7 +350,7 @@ else:
 \begin{frame}[fragile]{Loop}
 \begin{lstlisting}[language=python]
 # for loop
-for item in container: # compare to C++11 for-range
+for item in container: # compare to C++11 for-range for(auto x:lst)
     if search_something(item):
         # found it
         process(item)
@@ -360,6 +394,7 @@ Lazy evaluation:
 \subsection{Functions}
 \begin{frame}[fragile]{Functions}
 \begin{lstlisting}[language=python]
+# No types are needed! (Extremely dynamic)
 def foo(x,y,flag=False): # default parameter
     return (x + y if flag else x - y)
 
@@ -373,6 +408,30 @@ foo("a","b") # polymorphism
 	\item Only need to be defined before calling
 \end{itemize}
 \end{frame}
+% Execution rule for def Statements
+% 1. Create a function with signature <name>(<parameters>)
+% 2. Set the body of that function to be everything indented after the first line
+% 3. Bind <name> to that function in the current frame
+
+% The special value None represents nothing in Python
+% A function that does not explicitly return a value will return None
+
+% Pure Functions: just return values, e.g. abs(-2)
+% Non-Pure Functions: have side effects, e.g. print(-2) return None
+% A side effect isn't a value; it's anything that happens as a consequence of calling a function
+% Difference in frames between lambda & non-lambda funcitons
+
+% A default argument value is part of a function value, not generated by a call
+% >>> def f(s=[]):
+% ... s.append(3)
+% ... return len(s)
+% ...
+% >>> f()
+% 1
+% >>> f()
+% 2
+% >>> f()
+% 3
 
 \begin{frame}[fragile]{Variable arguments}
 \begin{itemize}
@@ -395,6 +454,23 @@ LEGB scope lookup rule
 \caption*{\scriptsize Source: \url{https://apprize.info/python/learning_1/18.html}}
 \end{figure}
 Use \verb'global' and \verb'nonlocal' to change scopes
+\end{frame}
+
+\begin{frame}[fragile]{Scope}
+\begin{lstlisting}[language=python]
+# Example 1
+for i in range(10):
+    # do something
+print(i) # valid
+
+# Example 2
+def foo(x):
+    print(y) # valid
+
+y = 10
+foo(y)
+\end{lstlisting}
+* Be careful of the global variable
 \end{frame}
 
 \begin{frame}[fragile]{Anonymous Functions}
@@ -454,6 +530,10 @@ Higher-order functions
 \end{figure}
 * Indeed, var gets a pointer pointing to the memory of the created object
 \end{frame}
+% Assignment: Name = Expression
+% 1. Evaluate the expression to the right of =.
+% 2. Bind the value of the expression to the name to the left of = in the current environment.
+% Names are bound to values in an environment
 
 \begin{frame}[fragile]{Change reference}
 \begin{lstlisting}[language=python]
@@ -496,6 +576,7 @@ List operation is inplace!
 >>> b
 [5, 2, 3]
 \end{lstlisting}
+\href{http://pythontutor.com/visualize.html#code=a%20%3D%20%5B1,2%5D%0Ab%20%3D%20a%0Ac%20%3D%20a%5B%3A%5D&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false}{Demo: Python tutor}
 \end{frame}
 
 \begin{frame}[fragile]{Shared reference}
@@ -511,6 +592,7 @@ Compare these two
 \end{frame}
 
 \begin{frame}[fragile]{Shared reference}
+Difference of \verb'==' and \verb'is'
 \begin{lstlisting}[language=python]
 >>> L = [1,2,3]
 >>> M = L # M = [1,2,3]
@@ -527,14 +609,15 @@ True
 	\item C++: pass by value, pass by reference
 	\pause
 	\item Python: pass by \textbf{object reference}
-	\begin{itemize}
-		\item Immutable objects (int,string) $\to$ create a new local object
-		\item Mutable object (list,set) $\to$ operate on that object
-	\end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Function arguments}
+Pass by \textbf{object reference}
+\begin{itemize}
+	\item Immutable objects (int,string) $\to$ create a new local object
+	\item Mutable object (list,set) $\to$ operate on that object
+\end{itemize}
 \begin{columns}
 \begin{column}{0.5\linewidth}
 \begin{lstlisting}[language=python]
@@ -567,17 +650,6 @@ print(answer_list)
 \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{Dynamic Types}
-\begin{itemize}
-\item Extremely flexible
-\item Biggest disadvantage: slow
-\begin{itemize}
-	\item Need to support various cases, e.g. \verb'+'
-	\item See assembly source code, \href{https://www.zhihu.com/question/25307289/answer/104643646}{ref}
-\end{itemize}
-\end{itemize}
-\end{frame}
-
 \begin{frame}[fragile]{More about dynamic types - Reflection}
 Enable the program to modify/check the code of itself
 \begin{itemize}
@@ -585,6 +657,69 @@ Enable the program to modify/check the code of itself
 	\item \verb'eval'/\verb'exec'
 \end{itemize}
 \end{frame}
+
+\begin{frame}[fragile]{Type systems}
+\begin{figure}
+\centering
+\includegraphics[width=0.4\linewidth]{fig/PL_types.jpg}
+\end{figure}
+\small
+\begin{itemize}
+	\item Dynamic type: Objects have a type, but it is determined at runtime
+	\item Static type: The type of variables must be known (and usually declared) at the point at which it is used (compile time)
+\begin{lstlisting}
+int a;
+a[10] = 1; // invalid
+\end{lstlisting}
+\end{itemize}
+\small * Ref: \url{https://www.zhihu.com/question/19918532}
+\end{frame}
+
+\begin{frame}[fragile]{Type systems}
+\begin{figure}
+\centering
+\includegraphics[width=0.4\linewidth]{fig/PL_types.jpg}
+\end{figure}
+\small
+\begin{itemize}
+	\item Strong type: You can't perform operations inappropriate to the type of the object
+	\item Weak type: A compiler / interpreter will sometimes change the type of a variable
+\begin{lstlisting}
+char b = 'a' + 1; // invalid
+\end{lstlisting}
+\end{itemize}
+\small * Ref: \url{https://www.zhihu.com/question/19918532}
+\end{frame}
+% Vczh, \url{https://www.zhihu.com/question/19918532/answer/21645395}
+% 强类型：偏向于不容忍隐式类型转换。譬如说haskell的int就不能变成double
+% 弱类型：偏向于容忍隐式类型转换。譬如说C语言的int可以变成double
+% 静态类型：编译的时候就知道每一个变量的类型，因为类型错误而不能做的事情是语法错误。
+% 动态类型：编译的时候不知道每一个变量的类型，因为类型错误而不能做的事情是运行时错误。譬如说你不能对一个数字a写a[10]当数组用。
+% https://wiki.python.org/moin/Why%20is%20Python%20a%20dynamic%20language%20and%20also%20a%20strongly%20typed%20language
+
+\begin{frame}[fragile]{Dynamic Types}
+\begin{itemize}
+\item Extremely flexible
+\item Biggest disadvantage: slow
+\begin{itemize}
+	\item Need to support various cases, e.g. \verb'+'
+	\item Put many issues (like type checking) which can be done in compile time to runtime
+	\item Can be seen from the assembly source code, \href{https://www.zhihu.com/question/25307289/answer/104643646}{ref}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+% \begin{frame}[fragile]{Some solutions}
+% \begin{itemize}
+% \item \href{https://www.python.org/dev/peps/pep-0484/}{PEP 0484} Type hint
+% \begin{lstlisting}[language=python]
+% def foo(x:int, y:int) -> int:
+%     return x + y
+% \end{lstlisting}
+% * Cannot accelerate itself, should be done with the assist of other tools
+% \item Pypy interpreter with JIT compilation (similar to Java)
+% \end{itemize}
+% \end{frame}
 
 \begin{frame}[fragile]{Run codes in non-interactive mode}
 \verb'python code.py'
@@ -622,6 +757,14 @@ By Mark Lutz\\
 * Extremely detailed!
 \end{column}
 \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Courses}
+Structure and Interpretation of Computer Programs (SICP)
+\begin{itemize}
+	\item \href{https://cs61a.org/}{UCB 61A}
+	\item \href{https://cs.nju.edu.cn/xyfeng/teaching/SICP/}{NJU 22000130}, Xingyu Feng
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Documents}
