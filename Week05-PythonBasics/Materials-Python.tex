@@ -6,6 +6,8 @@
 \usepackage{../TexTemplate/mypackage}
 \usepackage{ctex}
 
+\linespread{1.25}
+
 \title{Week 5 - Python Basics}
 \author{Hongzheng Chen}
 \date{Dec 13, 2019}
@@ -43,15 +45,22 @@ Moreover, Python will be used through the following seminars, your courses in so
 Therefore, learn it carefully and get as deep as you can.
 
 \section{Project}
-Use Python to write a Python interpreter.
+\textbf{Use Python to implement a Python interpreter.}
+The flow of interpreter is shown in Fig.~\ref{fig:flow}.
 Detailed descriptions will be posted later.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{fig/repl.png}
+\caption{A basic interpreter flow: Read-Eval-Print Loop (REPL)}
+\label{fig:flow}
+\end{figure}
 
 Some reference materials:
 \begin{itemize}
-	\item \href{https://github.com/aosabook/500lines/tree/master/interpreter}{Byterun}
-	\item \href{https://pypy.org/}{PyPy}
+	\item \href{https://github.com/aosabook/500lines/tree/master/interpreter}{Byterun}: A 500-line-code Python-based Python interpreter, which is based on \href{https://en.wikipedia.org/wiki/Stack_machine}{Stack machine} and may be very slow. Its description can be found in this \href{http://qingyunha.github.io/taotao/}{Chinese blog}.
+	\item \href{https://pypy.org/}{PyPy}: A Python-implemented \href{https://en.wikipedia.org/wiki/Just-in-time_compilation}{Just-in-time (JIT)} Python compiler. It is much faster than the official CPython implementation in some specific cases.
+	\item \href{https://cs.nju.edu.cn/xyfeng/teaching/SICP/lectureNotes/20-Interpreters.pptx}{NJU SICP} 20 - Interpreters: This slide gives the basic knowledge of interpreters.
 \end{itemize}
-
-% Read-Eval-Print loop (REPL)
 
 \end{document}
