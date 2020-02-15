@@ -336,6 +336,30 @@ Fancy indexing: Use array of indices
 \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]{More About Product Summation}
+\verb'np.einsum(equation, *operands)' (Einstein summation convention)
+\small
+\begin{center}
+\begin{tabular}{llll}\hline\hline
+Transpose & $c_{ij}=a_{ji}$ & $c_{ij}=a_{ji}$ & \verb'ij->ji'\\
+Dot product & $c=\sum_i a_ib_i$ & $c=a_ib_i$ & \verb'i,i->' or \verb'i,i'\\
+Outer product & $c_{ij}=a_ib_j$ & $c_{ij}=a_ib_j$ & \verb'i,j->ij'\\
+Summation & $c_i=\sum_j a_{ij}$ & $c_i=a_{ij}$ & \verb'ij->i'\\
+Trace & $c=\sum_i a_{ii}$ & $c=a_{ii}$ & \verb'ii'\\
+Hadamard product & $c_{ij}=a_{ij}b_{ij}$ & $c_{ij}=a_{ij}b_{ij}$ & \verb'ij,ij->ij'\\
+Matrix-vector product & $c_i=\sum_jA_{ij}b_j$ & $c_i=a_{ij}b_j$ & \verb'ij,j->i'\\
+Matrix-matrix product & $c_{ik}=\sum_ja_{ij}b_{jk}$ & $c_{ik}=a_{ij}b_{jk}$ & \verb'ij,jk->ik'\\
+Tensor product & $c_{kl}=\sum_i\sum_ja_{ijk}b_{ijl}$ & $c_{kl}=a_{ijk}b_{ijl}$ & \verb'ijk,ijl->kl'\\
+\hline
+\end{tabular}
+\end{center}
+Ref:
+\begin{itemize}
+	\item \url{https://stackoverflow.com/a/33641428}
+	\item \url{https://zhuanlan.zhihu.com/p/71639781}
+\end{itemize}
+\end{frame}
+
 \section{Math Softwares}
 \begin{frame}
 \sectionpage
