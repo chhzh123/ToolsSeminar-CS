@@ -29,17 +29,21 @@
 * 动态类型
 
 ## Week 6 - 科学计算
-* 环境配置 Anaconda、pip、jupyter
-* 标准库 time、datetime、random、logging、argparse、re
-* 科学计算 numpy、matplotlib、Mathematica
+* 简介
+* 环境配置 Anaconda、pip
+* 常用工具 virtualenv、pipreqs、jupyter
+* 科学计算 scipy、numpy
+* 数学软件 Mathematica
 
 ## Week 7 - 机器学习
+* pandas
 * sklearn
 
 ## Week 8 - 深度学习
 * pytorch/tensorflow、visdom/tensorboard
 
 ## Week 9 - 可视化
+* matplotlib
 * Tikz、Tikz-cd、Plotly、Visio/draw.io
 
 ## Week 10 - 并行计算

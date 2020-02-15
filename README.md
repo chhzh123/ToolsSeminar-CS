@@ -10,11 +10,11 @@ The schedule is listed below.
 | Week 3 | Nov 29 | C/C++ Toolchain | gcc, Makefile/CMake, gdb, time, perf |
 | Week 4 | Dec 6 | LaTeX Configuration & Usage | Overleaf/TexLive, LaTeX, BibTeX |
 | Week 5 | Dec 13 | Python Basics | Build-in objects and operations |
-| Week 6 | TBD | Scientific Computing | anaconda, numpy, matplotlib, MMA |
-| Week 7 | TBD | Machine Learning | sklearn |
+| Week 6 | TBD | Scientific Computing | pip, numpy, mathematica |
+| Week 7 | TBD | Machine Learning | pandas, sklearn |
 | Week 8 | TBD | Deep Learning | pytorch, visdom |
-| Week 9 | TBD | Visualization | tikz, visio |
-| Week 10 | TBD |Parallel Computing | OpenMP, MPI, Cilk, SIMD |
+| Week 9 | TBD | Visualization | matplotlib, tikz, visio |
+| Week 10 | TBD | Parallel Computing | OpenMP, MPI, Cilk, SIMD |
 
 ## Acknowledgements
 * Week 1, 4 is partly based on *[Tools Seminar](https://github.com/pppppass/ToolsSeminar)* in applied mathematics held in PKU
