@@ -64,6 +64,13 @@ Take exam as an example
 \end{itemize}
 \end{frame}
 
+\begin{frame}{AI Tribes}
+\begin{figure}
+\centering
+\includegraphics[width=0.6\linewidth]{fig/A-Look-at-Machine-Learning-Evolution.png}
+\end{figure}
+\end{frame}
+
 \section{Some Introductory Books \& Courses}
 \begin{frame}
 \sectionpage
@@ -255,6 +262,12 @@ $\vdots$ & & & & & $\vdots$\\\hline
 Sample $m$ & & & & & $y_m$ \\\hline
 \end{tabular}
 \end{center}
+Many ML tasks need to predict the label (classification/regression), e.g.
+\begin{itemize}
+	\item Kaggle \href{https://www.kaggle.com/c/titanic}{Titanic}
+	\item Tianchi \href{https://tianchi.aliyun.com/competition/entrance/231702/introduction?spm=5176.12281973.1005.6.3dd524483PJS4q}{Happiness}
+	\item ICM/MCM/CUMCM
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Data Cleaning}
@@ -280,10 +293,13 @@ Good data and good features benefit learning process
 \end{frame}
 
 \begin{frame}{Some Hints}
+\hypertarget{hint}{\beamerbutton{Hint}}
 Use jupyter notebook for interactive operations, see demo
 \begin{itemize}
 	\item You should carefully deal with the data which may be very dirty
+	\item You can select any features you like, do transformation, and discard others
 	\item For models with hyperparameters, use \href{https://scikit-learn.org/stable/modules/grid_search.html}{grid search} to fine-tune
+	\item Moreover, you can even stack two models, i.e. \href{https://en.wikipedia.org/wiki/Ensemble_learning}{ensemble learning}
 \end{itemize}
 \end{frame}
 
@@ -298,6 +314,28 @@ Use jupyter notebook for interactive operations, see demo
 	\item Machine learning basis: Linear regression
 	\item Data processing: pandas
 	\item Training \& Testing: sklearn
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Assignments}
+Use pandas \& sklearn to predict \underline{whether the income of a person exceeds \$50K/yr} (two-class classification)
+\begin{itemize}
+	\item Dataset: \url{http://archive.ics.uci.edu/ml/datasets/Adult}
+	\item \verb'adult.data' is the train set and \verb'adult.test' is the test set, i.e. you need not separate train and test set manually
+	\item \verb'adult.names' gives descriptions of the features
+	\item Present the classification \textbf{accuracy} and try to get close to the official accuracy (85\%)
+	\item You can use any ML model you like, see \url{https://scikit-learn.org/stable/supervised_learning.html}
+	\item Try to figure out why some models are better than others
+	\item All the works need to be done in a Jupyter notebook
+	\item Preserve your results in the notebook and submit your \verb'.ipynb' to Github
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Assignments}
+Hint:
+\begin{itemize}
+	\item Remember the proposed \hyperlink{hint}{\beamerbutton{hints}} in the former slide, and you can try several methods and compare the accuracy
+	\item Classification can be viewed as a special case of regression, thus common regression methods can be used
 \end{itemize}
 \end{frame}
 
