@@ -281,3 +281,6 @@ CMakeCache.txt
 CMakeFiles
 
 Supplements
+
+# Python
+.ipynb_checkpoints
