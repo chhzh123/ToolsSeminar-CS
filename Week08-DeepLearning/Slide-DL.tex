@@ -108,6 +108,123 @@ Looking back, we may know what leads to the boom of DL in 2010s
 \end{columns}
 \end{frame}
 
+\section{Deep Learning}
+\begin{frame}
+\sectionpage
+\end{frame}
+
+\begin{frame}{Linear Regression}
+Recall the linear regression problem
+\[y=\vw^\T\vx+b=\bmat{\vx^\T & b}\bmat{\vx\\1}=\vtheta^\T\vx\]
+To minimize loss function (MSE)
+\[\min_{\vtheta} L(\vtheta)=\frac{1}{m}\sum_{i=1}^m(y_i-\vw^\T\vx_i-b)^2\]
+But linear function can only deal with linearly separable problems
+\begin{figure}
+\centering
+\includegraphics[width=0.8\linewidth]{fig/linearly-separable.jpeg}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Powerful Models}
+Can we build a model that is powerful enough to represent all the functions?
+\begin{itemize}
+	\item $f(\text{image})=\text{location}$
+	\item $f(\text{question})=\text{answer}$
+	\item $f(\text{speech})=\text{text}$
+	\item $\cdots$
+\end{itemize}
+\pause
+Actually, in ML area, we have built decision tree, SVM, etc., but they usually need feature engineering and are not flexible
+\end{frame}
+
+\begin{frame}{Neuron Model}
+We can refer to our brain and see how we learn
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig/neuron_model.png}
+\caption*{\small Fig source: \url{http://cs231n.github.io/neural-networks-1/}}
+\end{figure}
+\pause
+A neuron is just a linear model with activation function!
+\end{frame}
+
+\begin{frame}{Activation Function}
+Used to add non-linear part to the model, enabling it to approximate much more complex functions
+\begin{figure}
+\centering
+\includegraphics[width=0.8\linewidth]{fig/activation_function.png}
+\end{figure}
+\begin{itemize}
+	\item Sigmoid: $g(z)=1/(1+\ee^{-z})$ (S curve)
+	\item Tanh: $g(z)=\tanh(z)$
+	\item ReLU (Rectified Linear Unit): $g(z)=\max(0,z)$, can avoid gradient vanishing
+\end{itemize}
+\end{frame}
+
+\begin{frame}{From one to more}
+Only one neuron can do limited things, what about more?
+\begin{itemize}
+	\item More neurons in width:
+	\begin{quote}
+	A feed-forward network with a single hidden layer containing a finite number of neurons can approximate continuous functions on compact subsets of $\rn$.\\
+	\hfill --- \href{https://en.wikipedia.org/wiki/Universal_approximation_theorem}{The Universal Approximation Theorem}
+	\end{quote}
+	The question is that the theorem does not tell us how many neurons we need
+	\pause
+	\item More neurons in depth: We have multi-layer perceptron (MLP) --- the basic model of nowadays deep learning!
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Multi-Layer Perceptron (MLP) / Fully-connected NN}
+\begin{figure}
+\centering
+\includegraphics[width=0.8\linewidth]{fig/mlp.png}
+\end{figure}
+\begin{itemize}
+	\item Input layer: $\vx$
+	\item Hidden layer: $h(\vx)=g(\vz^h(\vx))=g(W^h\vx+\vb^h)$
+	\item Output layer: $f(\vx)=\sigma(\vz^o(\vx))=\sigma(W^o h(\vx)+b^o)$
+\end{itemize}
+* Softmax function: change output to probability ($K$-dimensional)
+\[\sigma(\vz)_j=\frac{\ee^{z_j}}{\sum_{k=1}^K\ee^{z_k}}\]
+\end{frame}
+
+\begin{frame}{Classifier Training}
+\begin{itemize}
+	\item Find optimal parameters $\vtheta^*$ of a classifier $\vy=f(\vx;\vtheta)$
+	\item Rule: given input $\vx$, classifier output $f(\vx;\vtheta)$ should be as close to the ideal output as possible
+\end{itemize}
+\begin{figure}
+\centering
+\includegraphics[width=0.8\linewidth]{fig/classifier.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Classifier Training}
+Use MSE or other loss function
+\[\min_{\vtheta} \frac{1}{N}\sum_{i=1}^N\norm{f(\vx_i;\vtheta)-y_i}_2^2\]
+Use gradient descent to optimize parameters
+\[\vtheta^{(k+1)}=\vtheta^{(k)}-\alpha\nabla_{\vtheta} L(\vtheta)\]
+About how to optimize the above function on NN (backpropagation), please read \url{http://cs231n.github.io/optimization-1/}
+\end{frame}
+
+\begin{frame}{Different Kinds of NN}
+\begin{itemize}
+	\item \href{https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/}{CNN} (convolutional NN): CV
+	\begin{itemize}
+		\item Pooling / subsampling
+		\item Dropout
+		\item Residual block
+	\end{itemize}
+	\item RNN (recurrent NN): NLP
+	\begin{itemize}
+		\item LSTM
+		\item GRU
+	\end{itemize}
+	\item GAN (generative adversarial network): Image generation
+\end{itemize}
+\end{frame}
+
 \section{Frameworks}
 \begin{frame}
 \sectionpage
@@ -197,6 +314,7 @@ PyTorch has very detailed documentations, make the best of them!
 	\begin{itemize}
 		\item Once you get in some trouble concerning PyTorch, you can search \href{http://pytorch.org/docs/master/index.html}{the Docs of PyTorch} for details. Alternatively you can try to find if there are similar problems on \href{https://discuss.pytorch.org/}{\emph{PyTorch Discuss}}.
 	\end{itemize}
+	\item Get through cs231n!
 \end{itemize}
 \end{frame}
 
