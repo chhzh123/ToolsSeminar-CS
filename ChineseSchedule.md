@@ -36,11 +36,15 @@
 * 数学软件 Mathematica
 
 ## Week 7 - 机器学习
-* pandas
-* sklearn
+* 简介
+* 机器学习基础：线性回归
+* 数据处理/特征工程：pandas
+* 模型训练：sklearn
 
 ## Week 8 - 深度学习
-* pytorch/tensorflow、visdom/tensorboard
+* 简介（AI里程碑）
+* 深度学习基础：多层感知机
+* 深度学习框架：pytorch
 
 ## Week 9 - 可视化
 * matplotlib

@@ -12,10 +12,11 @@ The schedule is listed below.
 | Week 5 | Dec 13 | Python Basics | Build-in objects and operations |
 | Week 6 | TBD | Scientific Computing | pip, numpy, mathematica |
 | Week 7 | TBD | Machine Learning | pandas, sklearn |
-| Week 8 | TBD | Deep Learning | pytorch, visdom |
+| Week 8 | TBD | Deep Learning | pytorch |
 | Week 9 | TBD | Visualization | matplotlib, tikz, visio |
 | Week 10 | TBD | Parallel Computing | OpenMP, MPI, Cilk, SIMD |
 
 ## Acknowledgements
 * Week 1, 4 is partly based on *[Tools Seminar](https://github.com/pppppass/ToolsSeminar)* in applied mathematics held in PKU
 * Week 3 is partly based on *[Cornell ECE 2400](https://www.csl.cornell.edu/courses/ece2400/handouts/ece2400-overview.pdf): Computer Systems Programming* lectured by Christopher Batten in Fall 2019
+* Week 8 is partly based on PyTorch's offical tutorial *[Deep Learning with PyTorch: A 60 Minute Blitz](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html)*
