@@ -3,6 +3,8 @@
 \hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue}
 \usepackage{xcolor}
 
+\lstset{language=tex,frame=none}
+
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
 \title[ToolsSeminar]{Tools Seminar}
@@ -177,9 +179,154 @@ Tools: \href{https://www.wordclouds.com/}{WordCloud}, \href{http://www.wordle.ne
 \sectionpage
 \end{frame}
 
+\begin{frame}{Draw.io}
+\href{https://www.draw.io/}{Draw.io} is free online diagram software for making flowcharts, process diagrams, org charts, UML, ER and network diagrams
+\begin{itemize}
+	\item Web-based
+	\item Open-sourced
+	\item Support \LaTeX formulas
+	\item Export as pdf files
+\end{itemize}
+\end{frame}
+
 \section{TikZ}
 \begin{frame}
 \sectionpage
+\end{frame}
+
+\begin{frame}[fragile]{TikZ}
+\href{http://www.texample.net/tikz/}{TikZ} and PGF are \TeX packages for creating graphics programmatically
+\begin{itemize}
+	\item If you have installed TeXLive completely, TikZ must has been installed
+	\item Called by \verb'\usepackage{tikz}'
+	\item Manual: \url{http://www.texample.net/media/pgf/builds/pgfmanualCVS2012-11-04.pdf}
+	\item English tutorial from Overleaf: \url{https://www.overleaf.com/learn/latex/TikZ_package}
+	\item Chinese tutorial: \url{https://www.latexstudio.net/archives/9774}
+	\item Wiki book: \url{https://en.wikibooks.org/wiki/LaTeX/PGF/TikZ}
+\end{itemize}
+* \href{http://ctan.math.washington.edu/tex-archive/graphics/pgf/contrib/tikz-cd/tikz-cd-doc.pdf}{Tikz-cd}: commutative diagrams
+\end{frame}
+
+\begin{frame}[fragile]{TikZ Basis}
+\begin{itemize}
+	\item \verb'\begin{tikzpicture} ... \end{tikzpicture}'
+	\item \verb'\node [attribute] (nodelabel) at (coordinate) {texts};'
+	\item \verb'\draw (nodelabel) to (nodelabel);'
+	\item Every command ends with \verb';'
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{TikZ Example}
+\small
+\begin{columns}
+\begin{column}{0.4\linewidth}
+\begin{center}
+\begin{tikzpicture}
+\node [left] (a) at (0,0) {$A$};
+\node [right] (b) at (1,1) {$B$};
+\draw [color=red!50,->] (a) -- (b);
+\end{tikzpicture}
+\end{center}
+\begin{lstlisting}[basicstyle=\tiny]
+\begin{tikzpicture}
+\node [left] (a) at (0,0) {$A$};
+\node [right] (b) at (1,1) {$B$};
+\draw [color=red!50,->] (a) -- (b);
+\end{tikzpicture}
+\end{lstlisting}
+\small * Use \verb'cycle' to draw closed curves
+\end{column}
+\begin{column}{0.6\linewidth}
+\begin{center}
+\begin{tikzpicture}[domain=0:4]
+\draw[very thin,color=gray] (-0.1,-0.1) grid (3.9,3.1);
+\draw[->] (-0.2,0) -- (4.2,0) node[right] {$x$};
+\draw[->] (0,-0.2) -- (0,3.4) node[above] {$f(x)$};
+\draw[color=orange] plot (\x,{0.05*exp(\x)})
+	node[right] {$f(x) = \frac{1}{20} \mathrm e^x$};
+\end{tikzpicture}
+\end{center}
+\begin{lstlisting}[basicstyle=\tiny]
+\begin{tikzpicture}[domain=0:4]
+\draw[very thin,color=gray] (-0.1,-0.1) grid (3.9,3.1);
+\draw[->] (-0.2,0) -- (4.2,0) node[right] {$x$};
+\draw[->] (0,-0.2) -- (0,3.4) node[above] {$f(x)$};
+\draw[color=orange] plot (\x,{0.05*exp(\x)})
+	node[right] {$f(x) = \frac{1}{20} \mathrm e^x$};
+\end{tikzpicture}
+\end{lstlisting}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Tree}
+\begin{columns}
+\begin{column}{0.5\linewidth}
+\begin{center}
+\begin{tikzpicture}
+\node {root}
+    child {node {$a_1$}}
+    child {node {$a_2$}
+        child {node {$b_1$}}
+        child {node {$b_2$}}}
+    child {node {$a_3$}};
+\end{tikzpicture}
+\end{center}
+\begin{lstlisting}[basicstyle=\tiny]
+\begin{tikzpicture}
+\node {root}
+    child {node {$a_1$}}
+    child {node {$a_2$}
+        child {node {$b_1$}}
+        child {node {$b_2$}}}
+    child {node {$a_3$}};
+\end{tikzpicture}
+\end{lstlisting}
+\end{column}
+\begin{column}{0.5\linewidth}
+\begin{tikzcd}[column sep=scriptsize]
+& \text{root}\arrow[dash,dl]
+  \arrow[dash,d]\arrow[dash,dr] & \\
+a_1 & a_2\arrow[dash,dl]\arrow[dash,dr] & a_3\\
+b_1 & & b_2
+\end{tikzcd}
+\begin{lstlisting}[basicstyle=\tiny]
+\begin{tikzcd}[column sep=scriptsize]
+& \text{root}\arrow[dash,dl]
+  \arrow[dash,d]\arrow[dash,dr] & \\
+a_1 & a_2\arrow[dash,dl]\arrow[dash,dr] & a_3\\
+b_1 & & b_2
+\end{tikzcd}
+\end{lstlisting}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Control Command (Loop)}
+\begin{center}
+\begin{tikzpicture}
+[L1Node/.style={circle,
+    draw=blue!50, fill=blue!20, very thick,
+    minimum size=10mm},
+ L2Node/.style={rectangle,
+    draw=green!50, fill=green!20, very thick,
+    minimum size=10mm}]
+\foreach \x in {1,...,5}
+    \node[L1Node] (w1_\x) at (2*\x, 0){$\int_\Omega x_\x$};
+\end{tikzpicture}
+\end{center}
+\begin{lstlisting}
+\begin{tikzpicture}
+[L1Node/.style={circle,
+    draw=blue!50, fill=blue!20, very thick,
+    minimum size=10mm},
+ L2Node/.style={rectangle,
+    draw=green!50, fill=green!20, very thick,
+    minimum size=10mm}]
+\foreach \x in {1,...,5}
+    \node[L1Node] (w1_\x) at (2*\x, 0){$\int_\Omega x_\x$};
+\end{tikzpicture}
+\end{lstlisting}
 \end{frame}
 
 \section{Summary}
