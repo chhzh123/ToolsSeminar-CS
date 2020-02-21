@@ -48,7 +48,8 @@
 
 ## Week 9 - 可视化
 * matplotlib
-* Tikz、Tikz-cd、Plotly、Visio/draw.io
+* draw.io
+* TikZ, TikZ-cd
 
 ## Week 10 - 并行计算
 * OpenMP、MPI、Cilk、SIMD

@@ -13,7 +13,7 @@ The schedule is listed below.
 | Week 6 | TBD | Scientific Computing | pip, numpy, mathematica |
 | Week 7 | TBD | Machine Learning | pandas, sklearn |
 | Week 8 | TBD | Deep Learning | pytorch |
-| Week 9 | TBD | Visualization | matplotlib, tikz, visio |
+| Week 9 | TBD | Visualization | matplotlib, draw.io, tikz |
 | Week 10 | TBD | Parallel Computing | OpenMP, MPI, Cilk, SIMD |
 
 ## Acknowledgements
