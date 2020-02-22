@@ -20,6 +20,7 @@
 \tableofcontents
 \end{frame}
 
+% https://chhzh123.github.io/summary/parallel-computing/
 \section{Introduction}
 \begin{frame}
 \sectionpage
@@ -72,10 +73,10 @@ Thus, multicore processors put burdens from hardware to software, which needs pr
 \includegraphics[width=\linewidth]{fig/gpu-fpga.jpg}
 \end{figure}
 \pause
-We will focus on CPU parallelization in this seminar
+We will focus on CPU parallelism in this seminar
 \end{frame}
 
-\section{Single Machine Parallelization}
+\section{Single Machine Parallelism}
 \begin{frame}
 \sectionpage
 \end{frame}
@@ -191,6 +192,19 @@ Two basic methods:
 \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]{Multi-threading in Python}
+\begin{itemize}
+	\item \verb'threading.Thread'
+	\item \verb'multiprocessing.Process'
+	\item \verb't1.start()', \verb't1.join()'
+	\item \href{https://en.wikipedia.org/wiki/Global_interpreter_lock}{Global Interpreter Lock} (GIL) limitation $\to$ CPython
+	\begin{quote}
+	An interpreter that uses GIL always allows exactly one thread to execute at a time, even if run on a multi-core processor.
+	\end{quote}
+\end{itemize}
+Ref: \url{https://realpython.com/intro-to-python-threading/}
+\end{frame}
+
 \subsection{OpenMP}
 \begin{frame}
 \subsectionpage
@@ -261,7 +275,7 @@ float sum(const float *a, size_t n)
 
 % https://chhzh123.github.io/summary/parallel-computing/cilk/
 \begin{frame}[fragile]{Intel Clik Plus}
-Intel Cilk Plus: A extremely light-weighted parallel framework
+\href{https://www.cilkplus.org/}{Intel Cilk Plus}: A extremely light-weighted parallel framework
 \begin{itemize}
 	\item \verb'#include<cilk/cilk.h>'
 	\item gcc 5.0+: \verb'g++ -O3 -fcilkplus -lcilkrts <source>'
@@ -310,29 +324,163 @@ The most powerful thing is Cilk runtime deploys \textbf{work-stealing} schedulin
 \end{figure}
 \end{frame}
 
-\subsection{SIMD}
+\subsection{Finer-grained Parallelism}
 \begin{frame}
 \subsectionpage
 \end{frame}
 
-\begin{frame}{ILP}
+\begin{frame}{Parallelism}
 \begin{itemize}
-	\item Pipelining
-	\item Hyperscalar
-	\item Very Long Instruction Word (VLIW)
-	\item Vector processing
-	\item Out-of-Order (OoO) execution
-	\item Spectacular execution
+	\item Thread-Level Parallelism (TLP)
+	\item Instruction-Level Parallelism (ILP)
+	\begin{itemize}
+		\item Pipelining
+		\item Hyperscalar
+		\item Very Long Instruction Word (VLIW)
+		\item Vector processing
+		\item Out-of-Order (OoO) execution
+		\item Spectacular execution
+	\end{itemize}
+	\item Data-Level Parallelism
+	\begin{itemize}
+		\item SIMD (Single Instruction Multiple Data) array processor $\to$ GPU
+	\end{itemize}
+\end{itemize}
+% https://www.archive.ece.cmu.edu/~ece740/f13/lib/exe/fetch.php?media=seth-740-fall13-module5.1-simd-vector-gpu.pdf
+* Please refer to Computer Architecture books / CSAPP
+\end{frame}
+
+% https://chhzh123.github.io/blogs/2019-03-03-AVX/
+\begin{frame}{Intel CPU SIMD Instruction Set}
+\begin{itemize}
+	\item MME (Multi Media Extensions): Pentium, 1996
+	\item SSE (Streaming SIMD Extensions): Pentium III, 1999
+	\item AVX (Advanced Vector Extensions): Sandy Bridge 2008
+	\item AVX2: Haswell, 2011
 \end{itemize}
 \end{frame}
 
-\section{Distributed Parallelization}
+\begin{frame}[fragile]{Naming Conventions}
+\verb'_mm<bit_width>_<name>_<data_type>'
+\begin{itemize}
+\item \verb'<bit_width>': the return size, 128 - empty, 256 - 256
+\item \verb'<name>': describes the operation performed by the intrinsic
+\item \verb'<data_type>': the function's primary arguments
+\end{itemize}
+\begin{center}
+\begin{tabular}{cc}\hline
+Instructions & Description\\\hline
+ps &	packed single-precision\\
+pd &	packed double-precision\\
+epi8/epi16/epi32/epi64 &	signed integers\\
+epu8/epu16/epu32/epu64 &	unsigned integers\\
+si128/si256 &	unspecified vector\\
+m128/m128i/m128d &	input vector types\\\hline
+\end{tabular}
+\end{center}
+e.g. \verb'_mm256_srlv_epi64':  64-bit signed int $\to$ 256-bit vector
+\end{frame}
+
+\begin{frame}[fragile]{AVX Example}
+\begin{lstlisting}[basicstyle=\scriptsize]
+#include <immintrin.h>
+#include <stdio.h>
+
+int main() {
+
+    /* Initialize the two argument vectors */
+    __m256 evens = _mm256_set_ps(2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0);
+    __m256 odds = _mm256_set_ps(1.0, 3.0, 5.0, 7.0, 9.0, 11.0, 13.0, 15.0);
+
+    /* Compute the difference between the two vectors */
+    __m256 result = _mm256_sub_ps(evens, odds);
+
+    /* Display the elements of the result vector */
+    float* f = (float*) &result; // type conversion
+    printf("%f %f %f %f %f %f %f %f\n",
+      f[0], f[1], f[2], f[3], f[4], f[5], f[6], f[7]);
+
+    return 0;
+}
+\end{lstlisting}
+Add \verb'-mavx' flag when compiling\\
+* Be careful that redundant movements reduce performance!
+\end{frame}
+
+\section{Distributed Parallelism}
 \begin{frame}
 \sectionpage
 \end{frame}
 
-\begin{frame}{MPI}
+% https://chhzh123.github.io/summary/parallel-computing/mpi/
+\begin{frame}[fragile]{Message Passing Interface (MPI)}
+Need to install \href{http://www.mpich.org/}{MPI} compiler
+\begin{itemize}
+	\item \verb'#include<mpi.h>'
+	\item \verb'mpicc', \verb'mpic++'
+	\item \verb'mpirun -np 2 foo : -np 4 bar'
+\end{itemize}
+\end{frame}
 
+\begin{frame}[fragile]{MPI Hello World}
+\begin{lstlisting}
+#include <mpi.h>
+
+int main(int argc, char* argv[])
+{
+    int npes, myrank;
+    MPI_Init(&argc, &argv);
+    MPI_Comm_size(MPI_COMM_WORLD, &npes);
+    MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
+    printf("From process %d out of %d, Hello World!\n", myrank, npes);
+    MPI_Finalize();
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Message Passing}
+Message communication is the central part of MPI
+\begin{lstlisting}[basicstyle=\scriptsize]
+MPI_Send(
+    void* data,
+    int count,
+    MPI_Datatype datatype,
+    int destination,
+    int tag,
+    MPI_Comm communicator)
+
+MPI_Recv(
+    void* data,
+    int count,
+    MPI_Datatype datatype,
+    int source,
+    int tag,
+    MPI_Comm communicator,
+    MPI_Status* status)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{MPI Example Program (Ping Pong)}
+\begin{lstlisting}
+int ping_pong_count = 0;
+int partner_rank = (world_rank + 1) % 2;
+while (ping_pong_count < PING_PONG_LIMIT) {
+    if (world_rank == ping_pong_count % 2) {
+        // Increment the ping pong count before you send it
+        ping_pong_count++;
+        MPI_Send(&ping_pong_count, 1, MPI_INT, partner_rank, 0,
+                 MPI_COMM_WORLD);
+        printf("%d sent and incremented ping_pong_count "
+               "%d to %d\n", world_rank, ping_pong_count,
+               partner_rank);
+    } else {
+        MPI_Recv(&ping_pong_count, 1, MPI_INT, partner_rank, 0,
+                 MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+        printf("%d received ping_pong_count %d from %d\n",
+               world_rank, ping_pong_count, partner_rank);
+    }
+}
+\end{lstlisting}
 \end{frame}
 
 \section{Parallel Computing Frameworks}
@@ -340,11 +488,17 @@ The most powerful thing is Cilk runtime deploys \textbf{work-stealing} schedulin
 \sectionpage
 \end{frame}
 
+% https://chhzh123.github.io/summary/parallel-computing/mapreduce/
+% https://chhzh123.github.io/summary/parallel-computing/spark/
 \begin{frame}{Frameworks}
+\begin{figure}
+\centering
+\includegraphics[width=0.6\linewidth]{fig/mapreduce.png}
+\end{figure}
 \begin{itemize}
-\item MapReduce
-\item Spark
-\item Ray
+\item \href{https://www.tutorialspoint.com/hadoop/hadoop_mapreduce.htm}{MapReduce}: Big data programming model $\to$ Hadoop
+\item \href{https://spark.apache.org}{Spark}: Better data management
+\item \href{https://rise.cs.berkeley.edu/projects/ray/}{Ray}: Machine Learning
 \end{itemize}
 \end{frame}
 
@@ -353,10 +507,10 @@ The most powerful thing is Cilk runtime deploys \textbf{work-stealing} schedulin
 \sectionpage
 \end{frame}
 
-\begin{frame}[fragile]{Summary}
+\begin{frame}{Summary}
 \begin{itemize}
-	\item Introduction
-	\item Shared-memory: \verb'<pthreads>', OpenMP, Cilk, AVX
+	\item Introduction to parallelism
+	\item Shared-memory: pthreads, OpenMP, Cilk, AVX
 	\item Distributed-memory: MPI
 	\item Parallel computing frameworks: MapReduce
 \end{itemize}
