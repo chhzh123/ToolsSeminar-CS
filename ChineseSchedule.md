@@ -52,4 +52,7 @@
 * TikZ, TikZ-cd
 
 ## Week 10 - 并行计算
-* OpenMP、MPI、Cilk、SIMD
+* 并行计算简介
+* 单机共享内存：pthreads、OpenMP、Cilk、AVX
+* 分布式内存：MPI
+* 并行编程框架：MapReduce
