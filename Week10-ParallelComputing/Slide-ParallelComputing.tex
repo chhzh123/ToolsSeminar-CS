@@ -76,7 +76,7 @@ Thus, multicore processors put burdens from hardware to software, which needs pr
 We will focus on CPU parallelism in this seminar
 \end{frame}
 
-\section{Single Machine Parallelism}
+\section{Shared-Memory Parallelism}
 \begin{frame}
 \sectionpage
 \end{frame}
@@ -125,7 +125,7 @@ int main()
 Need to add \verb'-lpthread' flag when compiling
 \end{frame}
 
-\begin{frame}[fragile]{<thread>}
+\begin{frame}[fragile]{C++11 thread}
 C++11 adds initial support for multi-threading in stl
 \begin{lstlisting}
 #include <iostream>
@@ -268,7 +268,7 @@ float sum(const float *a, size_t n)
 \end{lstlisting}
 \end{frame}
 
-\subsection{Cilk}
+\subsection{Cilk Plus}
 \begin{frame}
 \subsectionpage
 \end{frame}
@@ -407,7 +407,7 @@ Add \verb'-mavx' flag when compiling\\
 * Be careful that redundant movements reduce performance!
 \end{frame}
 
-\section{Distributed Parallelism}
+\section{Distributed-Memory Parallelism}
 \begin{frame}
 \sectionpage
 \end{frame}
