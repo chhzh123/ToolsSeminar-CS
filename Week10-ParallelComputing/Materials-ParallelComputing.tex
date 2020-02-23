@@ -1,0 +1,78 @@
+% !TeX encoding = UTF-8
+% !TeX program = XeLaTeX
+% !TeX spellcheck = en_US
+
+\documentclass[english]{../TexTemplate/thesis}
+\usepackage{../TexTemplate/mypackage}
+\usepackage{ctex}
+
+\linespread{1.25}
+
+\title{Week 10 - Parallel Computing}
+\author{Hongzheng Chen}
+\date{Mar 30, 2020}
+\headercontext{Week 10 - Parallel Computing}
+
+\begin{document}
+
+\maketitle
+
+\section{Basis of Computer Architecture}
+\label{sec:basis}
+About the history and developments of computer, there are many books and papers you can refer to. \href{https://people.eecs.berkeley.edu/~krste/papers/BerkeleyView.pdf}{\emph{The Landscape of Parallel Computing Research: A View from
+Berkeley}} written by the scholars in UC Berkeley in 2006 may be a good literature for you to know why we need parallel computing and what are the challenges of computer architectures in the 21st century.
+
+Other resources about nowadays computer architecture may include the books written by John Hennessy and David Patterson, the 2018 Turing Award winners:
+\begin{itemize}
+	\item \href{http://uni-site.ir/khuelec/wp-content/uploads/Computer-Architecture-A-Quantitative-Approach.pdf}{\emph{Computer Architecture: A Quantitative Approach}} (\href{https://book.douban.com/subject/20452387/}{Chinese version})
+	\item \href{http://ac.aua.am/arm/public/2017-Spring-Computer-Organization/Textbooks/ComputerOrganizationAndDesign5thEdition2014.pdf}{\emph{Computer Organization and Design: The Hardware/Software Interface}} (\href{https://book.douban.com/subject/26604008/}{Chinese version})
+\end{itemize}
+The second book is also the textbook of our \emph{Computer Organization Principle} course, and you can read it ahead of the schedule. Moreover, \href{https://csapp.cs.cmu.edu/}{\emph{Computer Systems: A Programmer's Perspective (CS:APP)}} is still highly recommended for you to get through, which covers the basic concepts from applications to computer architecture.
+
+\section{Different Hardware}
+Basically, we focus on CPU, GPU and FPGA.
+CPU is the hardware you most familiar with --- easy-to-program, flexible, and general to different tasks.
+GPU, also known as graphical cards, is traditionally used for CG tasks such as rendering your PC games. Later, people found that GPU's vectorized computation ability can be extended to more tasks. Then the concept of General Purpose GPU (GPGPU) is proposed, and GPU is leveraged to accelerate deep learning, scientific computing, etc.
+GPU is much harder to program than CPU, which uses \href{https://developer.nvidia.com/cuda-zone}{CUDA} (Compute Unified Device Architecture) and SPMD (Single Program Multiple Data) model.
+But the emergence of deep learning frameworks like Tensorflow and PyTorch lowers the programming barrier and enables programmers quickly deploy their deep learning models onto GPU, which is also an important reason for the boom of deep learning.
+
+Regarding to Field-Programmable Gate Array (FPGA), abbreviated as FPGA, it is the one you most unfamiliar with. It is quite different with CPU and GPU that FPGA is non-von-Neumann architecture, and the execution is not based on instructions. FPGA directly synthesizes\footnote{You can basically think synthesis is a form of compilation, but they are not the same. See this \href{https://chhzh123.github.io/blogs/2020-02-01-compilation-and-synthesis/}{article} for the differences.} programs to circuits. When the data flows through FPGA, the execution is done.
+
+About CPU's architecture, you can find it in any computer architecture courses or books, as illustrated in Section~\ref{sec:basis}.
+About GPU's, you can also find that in parallel computing courses. I will give some in Section~\ref{sec:parallel}.
+For FPGA, there are several resources you can refer to:
+\begin{itemize}
+	\item \href{https://chhzh123.github.io/blogs/2019-02-08-fpga-all/}{FPGA结构、编译与应用}: My blog about overview of FPGA
+	\item \href{https://book.douban.com/subject/33390084/}{《FPGA原理和结构》}: This book is written by a Japanese and is very up-to-date (published in 2019). It is filled with details and must be an excellent book for beginners.
+	\item \href{https://github.com/lastweek/FPGA}{\emph{Cook FPGA}}: A Github repository contains all you need to know about FPGA from its architecture to programming guide.
+\end{itemize}
+
+Moreover, as commonsense, you should know the biggest enterprises in the world producing these hardware. For example, most of the desktop/server CPUs are x86 architecture and made by Intel or AMD\footnote{\href{https://finance.yahoo.com/news/intel-vs-amd-reviewing-rivalry-160718187.html?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS5oay8&guce_referrer_sig=AQAAAGutCYIthRsbiqrf0MLfuMwLJA7l1xYdyACmXtbsdiNet95zyZ4npC-cDxrxJVx0AlnVlgS64_3_sKcZb4alqe1Igip5SK3ES7DoSBq61I0IrRVFXGpoRKO4uJO4uEa-v_lH4uGZWagZUqgNL5i6MZvx60vC8rWdSqvyCA9HmEHa}{The 2019 data} shows Intel takes 80\% of the market of desktop CPUs while AMD takes 20\%; and the data for server CPUs is 93\% to 7\%.}
+For edge devices (smartphones), ARM (RISC architecture) takes most of the market share.
+For GPU\footnote{Here I mean isolated graphical cards. Otherwise, most of Intel CPU now has initial integrated GPU, and Intel must be the greatest winner.}, Nvidia has much greater advantages than AMD and takes control of most of the GPGPU field.
+For FPGA, Xilinx and Intel\footnote{At the very beginning, Intel did not make FPGAs. But at 2015, Intel bought the FPGA design company Altera and became the second leader in FPGA market, see \href{https://www.fool.com/investing/general/2015/06/05/why-is-intel-corporation-paying-167-billion-for-al.aspx}{this news}.} are the two leaders, where more than half of the market are under the control of Xilinx.
+
+\section{Parallel Computing}
+\label{sec:parallel}
+This seminar covers most of the programming models, and you can find them in the following courses:
+\begin{itemize}
+	\item \href{http://www.cs.cmu.edu/~418/}{CMU CS15-418}: \emph{Parallel Computer Architecture and Programming}
+	\item \href{https://sites.google.com/lbl.gov/cs267-spr2020/}{UCB CS267}: \emph{Applications of Parallel Computers}
+\end{itemize}
+The former course may be more CS-principle-related covering the topics I mention including ILP, SIMD, CUDA, OpenMP, MPI, etc.
+The latter course is more application-oriented and covers common scientific computing topics including matrix multiplication, graph processing, fast fourier transform (FFT), computational biology, etc.
+
+Otherwise, you can refer to my notes/blogs on parallel computing:
+\begin{itemize}
+	\item \href{https://chhzh123.github.io/summary/parallel-computing/}{并行计算}
+	\item \href{https://chhzh123.github.io/blogs/2019-03-14-cpp-multithreading/}{并行编程-C/C++多线程}
+	\item \href{https://chhzh123.github.io/summary/parallel-computing/openmp/}{并行编程-OpenMP}
+	\item \href{https://chhzh123.github.io/summary/parallel-computing/cilk/}{并行编程-Cilk}
+	\item \href{https://chhzh123.github.io/blogs/2019-03-03-AVX/}{并行编程-AVX指令集}
+	\item \href{https://chhzh123.github.io/summary/parallel-computing/mpi/}{并行编程-MPI}
+	\item \href{https://chhzh123.github.io/summary/parallel-computing/mapreduce/}{并行编程-MapReduce}
+	\item \href{https://chhzh123.github.io/summary/parallel-computing/spark/}{并行编程-Spark}
+\end{itemize}
+But these blogs are relatively concise, and you can find more materials in the references after the blogs.
+
+\end{document}
