@@ -126,6 +126,7 @@ Fortunately, Python has powerful package management tools!
 	\begin{itemize}
 		\item The complete data science platform
 		\item If you want to use your own GPU for deep learning in the future, you should install
+		\item Remember to change the mirror to \href{https://mirror.tuna.tsinghua.edu.cn/help/anaconda/}{Tsinghua}, or downloading will be very slow
 	\end{itemize}
 	\item Linux: \href{https://pip.pypa.io/en/stable/}{pip} (The Python Package Installer)
 	\begin{itemize}
@@ -174,6 +175,7 @@ conda has inherent environment management tool:
 	\end{itemize}
 	\item Code, data, figure, notes (Markdown)
 	\item Also valid on Github and VS Code
+	\item Next-generation notebook: \href{https://jupyter.org/}{Jupyter Lab}
 \end{itemize}
 \end{frame}
 
@@ -264,20 +266,19 @@ Arithmetic operations are \textbf{element-wise} if both are arrays of same size!
 \end{itemize}
 \begin{lstlisting}
 Image  (3d array): 256 x 256 x 3
-Scale  (1d array):             3
+Scale  (1d array):               3
 Result (3d array): 256 x 256 x 3
 
 A      (2d array):  5 x 4
-B      (1d array):      1
+B      (1d array):       1
 Result (2d array):  5 x 4
 
 A      (4d array):  8 x 1 x 6 x 1
-B      (3d array):      7 x 1 x 5
+B      (3d array):       7 x 1 x 5
 Result (4d array):  8 x 7 x 6 x 5
 \end{lstlisting}
 \begin{itemize}
-	\item \verb'+,-,*,/,**'
-	\item \verb'<,>,=='
+	\item \verb'+,-,*,/,**'\qquad \verb'<,>,=='
 	\item \verb'np.sin', \verb'np.exp', \verb'np.sqrt'
 \end{itemize}
 \end{frame}

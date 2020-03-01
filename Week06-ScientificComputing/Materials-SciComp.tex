@@ -18,22 +18,22 @@
 \maketitle
 
 \section{Scientific Computation}
-Scientific Computation is a such large field that we cannot cover all the topics here.
-Princeton publishes an online book named \href{https://introcs.cs.princeton.edu/java/home/}{Computer Science: An Interdisciplinary Approach}, which gives a brief introduction to most of the topics of CS, and also talks about some commonly-used methods and algorithms in scientific computation in \href{https://introcs.cs.princeton.edu/java/90scientific/}{Chapter 9}. You can quickly get through it.
+Scientific Computation is such a large field that we cannot cover all the topics here.
+Princeton publishes an online book named \href{https://introcs.cs.princeton.edu/java/home/}{\emph{Computer Science: An Interdisciplinary Approach}}, which gives a brief introduction to most of the topics of CS and also talks about some commonly-used methods and algorithms in scientific computation in \href{https://introcs.cs.princeton.edu/java/90scientific/}{Chapter 9}. You can quickly get through it.
 
-After the discussion on the seminar, you may notice scientific computing is actually a interdisciplinary field that involves linear algebra, calculus, numerical computing, optimization theory, and even computer system and architecture. Therefore, to make these scientific applications work, it is important to learn the principle of nowadays computers.
+After the discussion on the seminar, you may notice scientific computing is actually an interdisciplinary field that involves linear algebra, calculus, numerical computing, optimization theory, and even computer system and architecture. Therefore, to make these scientific applications work, it is important to learn the principle of nowadays computers.
 To have a better understanding of how the programs work and how to make the applications run faster, I again recommend you to read \href{https://csapp.cs.cmu.edu/}{CSAPP}.
 
 \section{Package and Environment Management}
-I suppose you have installed the required software like \href{https://www.anaconda.com/}{Anaconda} and \href{https://pypi.org/project/pip/}{pip}. (If not, please refer to the material of Week 05.) To accelerate downloading of packages, it is recommended to change the source url of pip and conda to \href{https://mirror.tuna.tsinghua.edu.cn/help/anaconda/}{Tsinghua mirror}, and guidance can be found \href{https://blog.csdn.net/weixin_41765699/article/details/83420149}{here}. 
+I suppose you have installed the required software like \href{https://www.anaconda.com/}{Anaconda} and \href{https://pypi.org/project/pip/}{pip}. (If not, please refer to the material of Week 05.) To accelerate the downloading of packages, it is recommended to change the source URL of pip and conda to \href{https://mirror.tuna.tsinghua.edu.cn/help/anaconda/}{Tsinghua mirror}, and guidance can be found \href{https://blog.csdn.net/weixin_41765699/article/details/83420149}{here}.
 
-Though the Python committee has announced they will not provide support for Python 2.x from 2020, there are still many packages using Python 2.x including the Ubuntu system. Thus, to better manage your packages in different version of Python, you'd better create a virtual environment when you begin a new project.
+Though the Python committee has announced they will not provide support for Python 2.x from 2020, there are still many packages using Python 2.x including the Ubuntu system. Thus, to better manage your packages in different versions of Python, you'd better create a virtual environment when you begin a new project.
 \href{https://conda.io/en/latest/}{conda} has initial support for creating a new environment, please read the \href{https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html}{official document} for instructions.
 Otherwise, you can install \href{https://virtualenv.pypa.io/en/latest/}{virtualenv} via \href{https://pypi.org/project/pip/}{pip}. Some commonly-used instructions can be found \href{https://tecadmin.net/use-virtualenv-with-python3/}{here}.
 
-Moreover, if you want to make your Python project correctly run on other computers, you should list out the third-party packages you used and install them in that computer. An automatic way is to use \href{https://github.com/bndr/pipreqs}{pipreqs} to generate the dependency. The instruction can be found \href{https://dev.to/bhupesh/pipreqs-automatically-generate-python-dependencies-30nl}{here}.
+Moreover, if you want to make your Python project correctly run on other computers, you should list out the third-party packages you used and install them on that computer. An automatic way is to use \href{https://github.com/bndr/pipreqs}{pipreqs} to generate the dependency. The instruction can be found \href{https://dev.to/bhupesh/pipreqs-automatically-generate-python-dependencies-30nl}{here}.
 
-Lastly, it is highly recommended to install \href{https://jupyter.org/}{Jupyter notebook}, a powerful web-based interface for data science. It has inherent interpreter, Markdown engine, command line and file system support, which will be very useful when you login a remote server. \href{https://www.dataquest.io/blog/jupyter-notebook-tutorial/}{Tutorials} and \href{http://liuchengxu.org/pelican-blog/jupyter-notebook-tips.html}{Advanced tips of Jupyter Notebook} are listed.
+Lastly, it is highly recommended to install \href{https://jupyter.org/}{Jupyter Notebook}, a powerful web-based interface for data science. It has an inherent interpreter, Markdown engine, command line, and file system support, which will be very useful when you login a remote server. \href{https://www.dataquest.io/blog/jupyter-notebook-tutorial/}{Tutorials} and \href{http://liuchengxu.org/pelican-blog/jupyter-notebook-tips.html}{Advanced tips of Jupyter Notebook} are listed. Otherwise, you can install \href{https://jupyter.org/}{Jupyter Lab}, which is the next generation of Jupyter Notebook with more powerful programming supports.
 
 \section{SciPy \& NumPy}
 In our seminar, we only cover the usage of \href{https://numpy.org/}{Numpy}, Matplotlib, and pandas.
@@ -49,7 +49,7 @@ The Python NumPy tutorial of the class \href{https://cs231n.github.io/python-num
 
 \section{Assignments}
 NumPy is the basics of further topics like machine learning and deep learning and is important for you to master it.
-\href{https://github.com/rougier/numpy-100}{NumPy-100} servers as good exercise for you to enhance the understanding of NumPy.
+\href{https://github.com/rougier/numpy-100}{NumPy-100} servers as a good exercise for you to enhance the understanding of NumPy.
 
 The required assignment for this week can be found in \verb'Assignments/NumPy-EM/main.ipynb'. Please use Jupyter Notebook to open.
 
