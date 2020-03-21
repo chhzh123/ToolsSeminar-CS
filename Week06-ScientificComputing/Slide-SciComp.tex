@@ -8,7 +8,7 @@
 \title[ToolsSeminar]{Tools Seminar}
 \subtitle{Week 6 - Scientific Computing}
 \author[chhzh123]{Hongzheng~Chen}
-\date[Mar 2, 2020]{Mar 2, 2020}
+\date[Mar 22, 2020]{Mar 22, 2020}
 
 \begin{document}
 
@@ -28,48 +28,116 @@
 \begin{frame}{Scientific Computation}
 Mostly involve applied mathematics and computational mathematics
 \begin{itemize}
-	\item Quantitative Finance (stock)
-	\item Physical simulation (fluid $\to$ CG)
+	\item Quantitative finance (stock)
+	\item Physical simulation (fluid, illumination, cloth $\to$ \href{https://www.youtube.com/watch?v=EhDr3Rs5fTU}{CG})
+	% http://graphics.stanford.edu/courses/cs348c/
 	\item Computational biology (gene)
 	\item Molecular dynamics (protein)
 	\item Ocean circulation
 	\item Weather/Climate prediction
-	\item Epidemics (SARS-CoV-2)
-	\item Astronomy (black hole $\to$ digital image processing)
 \end{itemize}
-* Supercomputing enables much more complex applications to be done
 \end{frame}
 
 \begin{frame}{Scientific Computation}
-\only<1>{
-\[\begin{array}{ccc}
-\textbf{Traditional CS} &  & \textbf{Sci Comp}\\
-\text{discrete} & \iff & \text{continuous}\\
-\text{integer} & \iff & \text{real numbers}
-\end{array}\]
-}
-\only<2>{
-\[\begin{array}{ccc}
-\textbf{Traditional CS} &  & \textbf{Sci Comp}\\
-\text{discrete} & \iff & \text{continuous}\\
-\text{integer} & \iff & \textbf{\textcolor{red}{real numbers}}
-\end{array}\]
-\href{http://754r.ucbtest.org/standards/754xml.html}{IEEE 754 binary floating point standard}\\
-Be careful of the \textbf{roundoff error}! $\to$ numerical computing\\
-Try $5.2-5$ in Python
-}
+Mostly involve applied mathematics and computational mathematics
+\begin{itemize}
+	\item Astronomy (1st \href{https://www.zhihu.com/question/318763133/answer/647517757}{black hole} photo $\to$ digital image processing)
+	% Katherine L. Bouman, Extreme Imaging via Physical Model Inversion: Seeing Around Corners and Imaging Black Holes
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{fig/blackhole.jpg}
+	\caption*{\scriptsize Fig source: Weibo}
+	\end{figure}
+	\[\hat{\vx}=\argmin_{\vx}[(f(\vx)-\vy)^\T\mathbf{R}^{-1}(f(\vx)-\vy)+(\vx-\vmu)^\T\Lambda^{-1}(\vx-\vmu)]\;,\]
+	where $\hat{\vx}$ is the photo needed to be reconstructed.
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Scientific Computation}
-Most of them are \textbf{matrix computation}! $\to$ \textbf{linear algebra}
+Mostly involve applied mathematics and computational mathematics
+\begin{itemize}
+	\item Epidemics (\href{https://www.zhihu.com/question/367466399/answer/982597090}{COVID-19} $\to$ SEIR model)
+\end{itemize}
+\begin{center}
+\small
+\begin{tikzcd}
+\text{Susceptible} (S)\arrow[r, "\beta"]
+& \text{Exposed} (E)\arrow[r, "\sigma"]
+& \text{Infectious} (I)\arrow[r, "\gamma"]
+& \text{Recovered} (R)
+\end{tikzcd}
+\end{center}
+\[\begin{cases}
+\frac{\diff S}{\diff t}=\mu N-\nu S-\frac{\beta SI}{N}\\
+\frac{\diff E}{\diff t}=\frac{\beta S I}{N} - vE-\sigma E\\
+\frac{\diff I}{\diff t}=\sigma E-\gamma I-\nu I\\
+\frac{\diff R}{\diff t}=\gamma I-\nu R
+\end{cases}\]
+\pause
+* \href{http://www.nscc-gz.cn/}{Supercomputing} enables more complex applications to be done
+\end{frame}
+
+\begin{frame}{Features of Scientific Computation}
+Gap between sci. comp. \& real computer:
+\[\begin{array}{ccc}
+\textbf{Real Computer} &  & \textbf{Sci. Comp.}\\
+\text{discrete} & \iff & \text{continuous}\\
+\text{integer} & \iff & \textbf{\textcolor{red}{real numbers}}
+\end{array}\]
+\pause
+\href{http://754r.ucbtest.org/standards/754xml.html}{IEEE 754 binary floating point standard}
+\[(-1)^s\times m\times 2^{e-127}\]
+Be careful of the \textbf{roundoff error}!\\
+Try $5.2-5$ in Python
+\end{frame}
+
+\begin{frame}[fragile]{Features of Scientific Computation}
+Most of them are \textbf{matrix computation}! (GEMM)\\
+e.g. gradient descent, convolution, Gauss-Seidel, $\ldots$
 \[c_{ij}=\sum_k a_{ik}b_{kj}\]
 \begin{lstlisting}[language=c++]
-for (int i = 0; i < N; i++)
+for (int i = 0; i < M; i++)
     for (int j = 0; j < N; j++)
-        for (int k = 0; k < N; k++)
+        for (int k = 0; k < K; k++)
             C[i][j] += A[i][k] * B[k][j];
 \end{lstlisting}
-* You should know how to store a 2D array in computer memory
+\pause
+Time complexity: $O(n^3)$, is it true?\\
+\pause
+Optimistically regard the memory as plain, but $\ldots$
+\end{frame}
+
+\begin{frame}{Memory Hierarchy}
+Recommend to read \href{https://csapp.cs.cmu.edu/}{CSAPP}!
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{fig/memory_hierarchy.jpg}
+\caption*{\scriptsize Fig source: \url{http://computerscience.chemeketa.edu/cs160Reader/ComputerArchitecture/MemoryHeirarchy.html}}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Temporal \& Spatial Locality}
+Recommend to read \href{https://csapp.cs.cmu.edu/}{CSAPP}!
+\begin{columns}
+\begin{column}{0.55\linewidth}
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{fig/locality.png}
+\caption*{\scriptsize Fig source: \url{https://stackoverflow.com/a/49325155}}
+\end{figure}
+\end{column}
+\begin{column}{0.45\linewidth}
+\begin{lstlisting}[language=c++]
+int sum = 0;
+for (int i = 0; i < 10; ++i)
+    sum = sum + a[i];
+\end{lstlisting}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Back to GEMM}
+You should know how to store a 2D array in computer memory
 \[\bmat{1 & 2\\3 & 4}\]
 \begin{itemize}
 	\item Row-major: \verb'{{1,2},{3,4}}' (C/C++)
@@ -78,24 +146,56 @@ for (int i = 0; i < N; i++)
 % https://en.wikipedia.org/wiki/Row-_and_column-major_order
 \end{frame}
 
-\begin{frame}{Memory Hierarchy}
-Recommend to read \href{https://csapp.cs.cmu.edu/}{CSAPP}!
+\begin{frame}[fragile]{Back to GEMM}
+\begin{lstlisting}[language=c++]
+for (int i = 0; i < M; i++)
+    for (int j = 0; j < N; j++)
+        for (int k = 0; k < K; k++)
+            C[i][j] += A[i][k] * B[k][j];
+\end{lstlisting}
 \begin{figure}
 \centering
-\includegraphics[width=0.6\linewidth]{fig/memory_hierarchy.jpg}
-\caption*{\scriptsize Fig source: \url{http://computerscience.chemeketa.edu/cs160Reader/ComputerArchitecture/MemoryHeirarchy.html}}
+\includegraphics[width=0.8\linewidth]{fig/gemm.png}
+\caption*{\scriptsize Fig source: \href{https://sahnimanas.github.io/post/anatomy-of-a-high-performance-convolution/img/naive-traversal.svg}{Sahnimanas}}
 \end{figure}
 \end{frame}
 
-\begin{frame}{Temporal \& Spatial Locality}
-Recommend to read \href{https://csapp.cs.cmu.edu/}{CSAPP}!
+\begin{frame}{Back to GEMM}
 \begin{figure}
 \centering
-\includegraphics[width=0.5\linewidth]{fig/locality.png}
-\caption*{\scriptsize Fig source: \url{https://stackoverflow.com/a/49325155}}
+\includegraphics[width=0.8\linewidth]{fig/cache-pollution.png}
+\caption*{\scriptsize Fig source: \href{https://sahnimanas.github.io/post/anatomy-of-a-high-performance-convolution/img/cache-pollution.png}{Sahnimanas}}
 \end{figure}
-Different data organization affects locality \& performance\\
-Thus, even scientific computing needs knowledge of \textbf{computer system \& arch}!
+\end{frame}
+
+\begin{frame}[fragile]{Back to GEMM}
+\begin{lstlisting}[language=c++]
+for (int i = 0; i < M; i++)
+    for (int k = 0; k < K; k++) // reordering
+        for (int j = 0; j < N; j++)
+            C[i][j] += A[i][k] * B[k][j];
+\end{lstlisting}
+\begin{figure}
+\centering
+\includegraphics[width=0.75\linewidth]{fig/reordering.png}
+\caption*{\scriptsize Fig source: \href{https://sahnimanas.github.io/post/anatomy-of-a-high-performance-convolution/img/reordered.svg}{Sahnimanas}}
+\end{figure}
+Data organization greatly affects performance, more than 10x speedup!!!
+\end{frame}
+
+\begin{frame}{Scientific Computation Requirements}
+\begin{itemize}
+	\item Calculus
+	\item Linear Algebra
+	\item Differential Equations (pde / ode)
+	\item Convex Optimization
+	\item Numerical Computing
+	\item Computer System \& Architecture
+	\item Parallel Computing
+	\item $\cdots$
+\end{itemize}
+\pause
+Thankfully, we have lots of tools to support sci. comp.
 \end{frame}
 
 \section{Package Management}
@@ -103,9 +203,9 @@ Thus, even scientific computing needs knowledge of \textbf{computer system \& ar
 \sectionpage
 \end{frame}
 
-\begin{frame}{Why we need package management}
-Installing third-party library for C/C++ is very awkward (boost, OpenGL, $\ldots$)
-\begin{enumerate}
+\begin{frame}{Why we need package management?}
+Installing third-party library for \underline{C/C++} is very awkward (boost, OpenGL, $\ldots$)
+\begin{enumerate}[<+->]
 	\item Download source code with magic version from some unknown webpages
 	\item Put the code in some system folder that is hard to find
 	\item Compile the library
@@ -120,7 +220,7 @@ Thus, we need tools to help us \textbf{build, manage, upgrade, remove} different
 \end{frame}
 
 \begin{frame}[fragile]{Package Management}
-Fortunately, Python has powerful package management tools!
+Fortunately, \underline{Python} has powerful package management tools!
 \begin{itemize}
 	\item Windows: \href{https://www.anaconda.com/}{Anaconda} (conda)
 	\begin{itemize}
@@ -138,6 +238,15 @@ Fortunately, Python has powerful package management tools!
 \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]{Package Management}
+\begin{itemize}
+	\item \verb'pip install ...'
+	\item \verb'pip install --upgrade ...'
+	\item \verb'pip uninstall ...'
+	\item \verb'pip list'
+\end{itemize}
+\end{frame}
+
 \begin{frame}[fragile]{Environment Management}
 If you need to regularly change Python version, please create a \href{https://virtualenv.pypa.io/en/latest/}{virtual environment}!\\
 \verb'pip3 install virtualenv'
@@ -146,6 +255,9 @@ If you need to regularly change Python version, please create a \href{https://vi
 	\item \verb'which python3'
 	\item \verb'virtualenv -p /usr/bin/python3 mypy3'
 	\item \verb'source mypy3/bin/activate'
+	\begin{itemize}
+		\item Then you can directly call Python 3 by \verb'python'
+	\end{itemize}
 	\item \verb'deactivate'
 \end{itemize}
 conda has inherent environment management tool:
@@ -187,12 +299,12 @@ conda has inherent environment management tool:
 \begin{frame}[fragile]{SciPy}
 \href{https://www.scipy.org/}{SciPy}: a Python-based ecosystem of open-source software for mathematics, science, and engineering
 \begin{itemize}
-	\item NumPy: Base N-dimensional array package
+	\item \underline{NumPy}: Base N-dimensional array package
 	\item SciPy library: Fundamental library for scientific computing (FFT, signal, opt, $\ldots$)
-	\item Matplotlib: Comprehensive 2-D plotting
+	\item \underline{Matplotlib}: Comprehensive 2-D plotting
 	\item IPython: Enhanced interactive console
 	\item SymPy: Symbolic mathematics
-	\item pandas: Data structures \& analysis
+	\item \underline{pandas}: Data structures \& analysis
 \end{itemize}
 * Anaconda must contain scipy package\\
 For Linux, install by \verb'pip3 install scipy'
@@ -289,7 +401,8 @@ Result (4d array):  8 x 7 x 6 x 5
 \begin{frame}[fragile]{Matrix Product}
 Notice: \verb'*' for numpy array is the element-wise or \textbf{Hadamard product}, denoted as
 \[(A\circ B)_{ij}=(A)_{ij}(B)_{ij}\]
-The true matrix product can be called as shown below
+\bigskip
+The true \textbf{matrix product} can be called as shown below
 \begin{lstlisting}
 >>> a @ b                       # matrix product
 >>> a.dot(b)                    # another matrix product
@@ -345,6 +458,25 @@ Fancy indexing: Use array of indices
 \small
 \begin{center}
 \begin{tabular}{llll}\hline\hline
+Transpose & $c_{ij}=a_{ji}$ & $c_{ij}=a_{ji}$ & \verb'ij->ji' \\
+Dot product & $c=\sum_i a_ib_i$ & \qquad\qquad & \qquad\qquad \\
+Outer product & $c_{ij}=a_ib_j$ & \qquad\qquad & \qquad\qquad \\
+Summation & $c_i=\sum_j a_{ij}$ & \qquad\qquad & \qquad\qquad \\
+Trace & $c=\sum_i a_{ii}$ & \qquad\qquad & \qquad\qquad \\
+Hadamard product & $c_{ij}=a_{ij}b_{ij}$ & \qquad\qquad & \qquad\qquad \\
+Matrix-vector product & $c_i=\sum_jA_{ij}b_j$ & $c_i=a_{ij}b_j$ & \verb'ij,j->i' \\
+Matrix-matrix product & $c_{ik}=\sum_ja_{ij}b_{jk}$ & \qquad\qquad & \qquad\qquad \\
+Tensor product & $c_{kl}=\sum_i\sum_ja_{ijk}b_{ijl}$ & \qquad\qquad & \qquad\qquad \\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{More About Product Summation}
+\verb'np.einsum(equation, *operands)' (Einstein summation convention)
+\small
+\begin{center}
+\begin{tabular}{llll}\hline\hline
 Transpose & $c_{ij}=a_{ji}$ & $c_{ij}=a_{ji}$ & \verb'ij->ji'\\
 Dot product & $c=\sum_i a_ib_i$ & $c=a_ib_i$ & \verb'i,i->' or \verb'i,i'\\
 Outer product & $c_{ij}=a_ib_j$ & $c_{ij}=a_ib_j$ & \verb'i,j->ij'\\
@@ -357,10 +489,19 @@ Tensor product & $c_{kl}=\sum_i\sum_ja_{ijk}b_{ijl}$ & $c_{kl}=a_{ijk}b_{ijl}$ &
 \hline
 \end{tabular}
 \end{center}
+Easy to write, and very efficient!\\
 Ref:
 \begin{itemize}
 	\item \url{https://stackoverflow.com/a/33641428}
 	\item \url{https://zhuanlan.zhihu.com/p/71639781}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Some hints for efficient implementation}
+\begin{itemize}
+	\item Do NOT use naive Python loop!
+	\item Think of matrix/tensor representation instead of scalar
+	\item Use inherent matrix operators
 \end{itemize}
 \end{frame}
 
