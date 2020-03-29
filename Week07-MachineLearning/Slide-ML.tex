@@ -8,7 +8,7 @@
 \title[ToolsSeminar]{Tools Seminar}
 \subtitle{Week 7 - Machine Learning}
 \author[chhzh123]{Hongzheng~Chen}
-\date[Mar 9, 2020]{Mar 9, 2020}
+\date[Mar 29, 2020]{Mar 29, 2020}
 
 \begin{document}
 
@@ -28,14 +28,16 @@
 \begin{frame}{Machine Learning Era}
 We witness the boom of ML:
 \begin{itemize}
-	\item Face recognition
-	\item Speech recognition
-	\item Language translation
-	\item Question-answering system
-	\item Self-driving
-	\item Games
-	\item Healthcare
-	\item Robots
+	\item Face recognition (\href{https://intl.alipay.com/}{Alipay}, \href{https://www.faceplusplus.com/}{Face++}, \href{https://www.sensetime.com/}{SenseTime})
+	\item Speech recognition (\href{https://zhiyin.sogou.com/}{Sougou}, \href{https://www.iflytek.com/}{iFlyTek})
+	\item Language translation (Google, Wechat)
+	\item Question-answering system (\href{https://www.apple.com/siri/}{Apple Siri}, \href{https://ai.baidu.com/}{Baidu})
+	\item Self-driving (\href{https://www.tesla.com/}{Tesla})
+	\item \href{https://deepmind.com/blog/article/capture-the-flag-science}{Games} (\href{https://deepmind.com/}{DeepMind}-\href{https://deepmind.com/blog/article/AlphaStar-Grandmaster-level-in-StarCraft-II-using-multi-agent-reinforcement-learning}{AlphaStar}, \href{https://ai.tencent.com/ailab/}{Tencent}-\href{https://ai.tencent.com/ailab/zh/news/detial?id=54}{Juewu})
+	% Mastering Complex Control in MOBA Games with Deep Reinforcement Learning, AAAI'20
+	% https://arxiv.org/pdf/1912.09729.pdf
+	\item Healthcare (\href{https://deepmind.com/research/open-source/computational-predictions-of-protein-structures-associated-with-COVID-19}{DeepMind})
+	\item Robots (\href{https://www.bostondynamics.com/}{Boston Dynamics})
 	\item $\cdots$
 \end{itemize}
 \end{frame}
@@ -58,32 +60,43 @@ Take exam as an example
 \end{frame}
 
 \begin{frame}{Machine Learning Branches}
-\begin{figure}[H]
+\begin{figure}
 \centering
-\includegraphics[width=0.8\linewidth]{fig/ml_branches.png}
-\caption*{\small Fig source: \url{https://askdatascience.com/13/what-are-the-main-branches-of-machine-learning}}
+\includegraphics[width=0.75\linewidth]{fig/ml_branches.png}
+\caption*{\scriptsize Fig source: \url{https://askdatascience.com/13/what-are-the-main-branches-of-machine-learning}}
 \end{figure}
 \end{frame}
 
-\begin{frame}{Some Ideas to Clarify}
-\begin{center}
-\textbf{Artificial Intelligence (AI)\\
-\qquad $>$ Machine Learning (ML)\\
-\qquad\qquad $>$ Deep Learning (DL)}
-\end{center}
+\begin{frame}{Some Concepts to Clarify}
+% \begin{center}
+% \textbf{Artificial Intelligence (AI)\\
+% \qquad $>$ Machine Learning (ML)\\
+% \qquad\qquad $>$ Deep Learning (DL)}
+% \end{center}
+\begin{columns}
+\begin{column}{0.5\linewidth}
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{fig/dl_venn.jpg}
+\caption*{\scriptsize Fig source: \href{http://www.deeplearningbook.org/}{Deep Learning} Book}
+\end{figure}
+\end{column}
+\begin{column}{0.5\linewidth}
 \begin{itemize}
 	\item ML is not the only way to achieve AI
 	\item DL is just a method of ML
 	\item Neural Network (NN) is the core of DL
 	\item Computer Vision (CV) \& Natural Language Processing (NLP) are two applications of DL
 \end{itemize}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}{AI History}
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{fig/AI-history.jpg}
-\caption*{\small Ref: \url{https://en.wikipedia.org/wiki/History_of_artificial_intelligence}}
+\caption*{\scriptsize Ref: \url{https://en.wikipedia.org/wiki/History_of_artificial_intelligence}}
 \end{figure}
 \end{frame}
 
@@ -108,7 +121,12 @@ Prerequirement: \href{http://cs229.stanford.edu/section/cs229-linalg.pdf}{Linear
 You can find them on Bilibili!\\\bigskip
 % 如何用3个月零基础入门「机器学习」？ - 微调的文章 - 知乎
 % https://zhuanlan.zhihu.com/p/29704017
-* YJango, \href{https://space.bilibili.com/344849038/channel/detail?cid=54015}{《学习观》}
+Other resources:
+\begin{itemize}
+	\item YJango, \href{https://space.bilibili.com/344849038/channel/detail?cid=54015}{《学习观》}
+	\item 知乎
+	\item 微信公众号：量子位、机器之心、新智元(\cmark/\xmark)
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Chinese Books}
@@ -221,10 +239,11 @@ But for MSE of linear regression, you can easily find close-form solution by \te
 
 \begin{frame}{Summary}
 \begin{enumerate}
-	\item Obtain required training and testing data
-	\item Determine the objective of the task
-	\item Select a machine learning model to train
-	\item Use pre-trained model to predict
+	\item Obtain required training and testing \textbf{data}
+	\item Determine the objective of the task (\textbf{loss function})
+	\item Select a machine learning \textbf{model}
+	\item \textbf{Train} the model on training data
+	\item Use pre-trained model to predict/\textbf{inference}
 \end{enumerate}
 \end{frame}
 
@@ -237,7 +256,7 @@ But for MSE of linear regression, you can easily find close-form solution by \te
 \begin{figure}
 \centering
 \includegraphics[width=0.8\linewidth]{fig/ml_today.png}
-\caption*{\small Fig source: Jeff Dean, HotChips 2017}
+\caption*{\scriptsize Fig source: Jeff Dean, HotChips 2017}
 \end{figure}
 \end{frame}
 
@@ -246,9 +265,15 @@ Training data: The new input to software 2.0
 \begin{figure}
 \centering
 \includegraphics[width=0.9\linewidth]{fig/software2.png}
-\caption*{\small Fig source: Kunle Olukutun, ISCA, 2018}
+\caption*{\scriptsize Fig source: Kunle Olukutun, ISCA, 2018}
 \end{figure}
-Thus, \textbf{quality \& quantity} of the data determine performance!
+\vspace{-5pt}
+\begin{itemize}
+\item Software 1.0: $\colorbox{yellow}{$P_0$}$
+\item Software 2.0: $P_0\to P_1\to \cdots \to \colorbox{yellow}{$P_n$}$
+\end{itemize}
+\pause
+\textbf{Quality \& quantity} of the data determine performance!
 \end{frame}
 
 \begin{frame}{Common Data Science Steps}
