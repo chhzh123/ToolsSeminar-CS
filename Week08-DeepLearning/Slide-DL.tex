@@ -8,7 +8,7 @@
 \title[ToolsSeminar]{Tools Seminar}
 \subtitle{Week 8 - Deep Learning}
 \author[chhzh123]{Hongzheng~Chen}
-\date[Mar 16, 2020]{Mar 16, 2020}
+\date[Apr 5, 2020]{Apr 5, 2020}
 
 \begin{document}
 
@@ -55,15 +55,15 @@
 \end{frame}
 
 \begin{frame}{ImageNet \& Deep Neural Network}
-ImageNet [Feifei Li, Stanford] Large Scale Visual Recognition Challenge
-\begin{center}
-\begin{tabular}{cccccc}\hline\hline
- & LeNet & AlexNet & VGG & GoogleLeNet & ResNet\\\hline
-\# of Layers & 5 & 8 & 19 & 22 & \textbf{152}\\\hline
-Top 5 Error & N/A & 16.4\% & 7.3\% & 6.7\% & 3.57\%\\\hline
-Year & 1994 & 2012 & 2014 & 2014 & 2015\\\hline
-\end{tabular}
-\end{center}
+\href{http://image-net.org/}{ImageNet Large Scale Visual Recognition Challenge} (ILSVRC) [Feifei Li, Stanford]
+\begin{itemize}
+	\item Labeled dataset $\to$ supervised learning
+	\item 14+ million images, 20,000 categories
+\end{itemize}
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{fig/imagenet.png}
+\end{figure}
 This is why it's called ``\textbf{deep}'' learning\\
 \end{frame}
 
@@ -76,7 +76,7 @@ This is why it's called ``\textbf{deep}'' learning\\
 \begin{itemize}
 	\item Geoffrey Hinton: Backpropagation, Boltzmann Machines, Improvements to Convolutional Neural Network (CNN)
 	\item Yoshua Bengio: Probabilistic models of sequences, High-dimensional word embeddings and attention, Generative adversarial networks (GAN)
-	\item Yann LeCun: CNN, backprop, Broadening the vision of neural networks
+	\item Yann LeCun: CNN, backprop, Broadening the vision of neural networks (LeNet5)
 \end{itemize}
 \end{frame}
 
@@ -97,7 +97,7 @@ All of them are indispensable and make up the whole DL stack
 \begin{itemize}
 \item Feifei Li, \href{http://cs231n.github.io/}{Stanford cs231n}: Convolutional Neural Networks for Visual Recognition (highly recommended!)
 \item Chris Manning, \href{https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1194/}{Stanford cs224n}: Natural Language Processing with Deep Learning
-\item Ian Goodfellow, \href{https://www.deeplearningbook.org/}{Deep Learning}\\
+\item Ian Goodfellow, \href{https://www.deeplearningbook.org/}{Deep Learning},\\
 \href{https://github.com/exacity/deeplearningbook-chinese}{Chinese version}
 \end{itemize}
 \end{column}
@@ -136,7 +136,86 @@ Can we build a model that is powerful enough to represent all the functions?
 	\item $\cdots$
 \end{itemize}
 \pause
-Actually, in ML area, we have built decision tree, SVM, etc., but they usually need feature engineering and are not flexible
+Actually, in ML area, we have built decision tree, SVM, etc., but they usually need feature engineering and are \underline{not flexible}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\large We need to reduce the burden of programmers\\
+and make machines more automatic \& intelligent
+\end{center}
+\pause\quad\\\bigskip
+\begin{center}
+\large \textbf{But how?}
+\end{center}
+\end{frame}
+
+\begin{frame}{Representation Learning}
+% http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/
+\begin{figure}
+\centering
+\includegraphics[width=0.8\linewidth]{fig/representation.jpg}
+\caption*{\scriptsize Fig source: \href{https://www.deeplearningbook.org/contents/intro.html}{\emph{Deep Learning}} book}
+\end{figure}
+\textbf{Representation matters!}
+\end{frame}
+
+\begin{frame}{Representation Learning}
+Different feature representation affects final performance
+\\\bigskip\pause
+Then, let machine learn the feature itself!
+\[\text{features}\to\text{mapping from features}\to\text{output}\]
+e.g.
+\begin{itemize}
+	\item Encoder-decoder
+	\item Word embeddings, graph embeddings
+\end{itemize}
+\end{frame}
+
+\begin{frame}{But...}
+We may have lots of features...\\
+e.g. figure out what the object is in the photo
+\begin{itemize}
+	\item size
+	\item color
+	\item material
+	\item illumination
+	\item view angle
+	\item $\ldots$
+\end{itemize}
+Representation learning captures several features, but cannot capture all of them
+\pause
+\begin{center}
+\textbf{So complex!}
+\end{center}
+\end{frame}
+
+\begin{frame}{Decouple to simple features!}
+Learn from simple/shallow features and gradually to complex/deep features
+\begin{columns}
+\begin{column}{0.6\linewidth}
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{fig/dl_model.jpg}
+\caption*{\scriptsize Fig source: \href{https://www.deeplearningbook.org/contents/intro.html}{\emph{Deep Learning}} book}
+\end{figure}
+\end{column}
+\begin{column}{0.4\linewidth}
+\quad\\
+\quad\\
+\begin{center}
+\textbf{Key: Get deeper!}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\centering
+\includegraphics[width=0.5\linewidth]{fig/catalog.jpg}
+\caption*{\scriptsize Fig source: \href{https://www.deeplearningbook.org/contents/intro.html}{\emph{Deep Learning}} book}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Neuron Model}
@@ -147,11 +226,11 @@ We can refer to our brain and see how we learn
 \caption*{\small Fig source: \url{http://cs231n.github.io/neural-networks-1/}}
 \end{figure}
 \pause
-A neuron is just a linear model with activation function!
+A neuron is just a linear model with \textbf{activation function}!
 \end{frame}
 
 \begin{frame}{Activation Function}
-Used to add non-linear part to the model, enabling it to approximate much more complex functions
+Add non-linear part to the model, enabling it to approximate much more \textbf{complex} functions (key of NN!)
 \begin{figure}
 \centering
 \includegraphics[width=0.8\linewidth]{fig/activation_function.png}
@@ -166,7 +245,7 @@ Used to add non-linear part to the model, enabling it to approximate much more c
 \begin{frame}{From one to more}
 Only one neuron can do limited things, what about more?
 \begin{itemize}
-	\item More neurons in width:
+	\item More neurons in width:\vspace{3pt}
 	\begin{quote}
 	A feed-forward network with a single hidden layer containing a finite number of neurons can approximate continuous functions on compact subsets of $\rn$.\\
 	\hfill --- \href{https://en.wikipedia.org/wiki/Universal_approximation_theorem}{The Universal Approximation Theorem}
@@ -210,6 +289,13 @@ Use gradient descent to optimize parameters
 About how to optimize the above function on NN (backpropagation), please read \url{http://cs231n.github.io/optimization-1/}
 \end{frame}
 
+\begin{frame}{Training}
+Let's see how NN trains:
+\begin{flushleft}
+\href{https://playground.tensorflow.org/}{Tensorflow Playground}
+\end{flushleft}
+\end{frame}
+
 \begin{frame}{Different Kinds of NN}
 \begin{itemize}
 	\item \href{https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/}{CNN} (convolutional NN): CV
@@ -245,16 +331,18 @@ Framework: A large package consisting of lots of deep learning primatives/operat
 		\item Dynamic computation graph
 		\item Yangqing Jia, Caffe
 	\end{itemize}
-	\item Amazon: MXNet
+	\item Amazon: \href{https://mxnet.apache.org/}{MXNet}
 	\begin{itemize}
-		\item Tianqi Chen (UW $\to$ CMU)
+		\item Tianqi Chen
 	\end{itemize}
+	\item[] [Domestic] \href{https://www.paddlepaddle.org.cn/}{PaddlePaddle} (Baidu), \href{https://github.com/mindspore-ai/mindspore}{Mindspore} (Huawei), \href{https://github.com/MegEngine/MegEngine}{MegEngine} (Face++), \href{https://github.com/Jittor/jittor}{Jittor} (Tsinghua)
+	% 深度学习框架的灵魂 - 袁进辉的文章 - 知乎 https://zhuanlan.zhihu.com/p/121834310
 \end{itemize}
 * We focus on \textbf{PyTorch} in this seminar
 \end{frame}
 
 \begin{frame}{PyTorch}
-PyTorch: A Python-based scientific computing package
+\href{https://pytorch.org/}{PyTorch}: A Python-based deep learning framework
 \begin{itemize}
 	\item A replacement for NumPy to use the power of GPUs
 	\item A deep learning research platform that provides maximum flexibility and speed
@@ -319,9 +407,9 @@ PyTorch has very detailed documentations, make the best of them!
 	\item Introduction
 	\item Deep Learning Framework: PyTorch
 	\begin{itemize}
-		\item Once you get in some trouble concerning PyTorch, you can search \href{http://pytorch.org/docs/master/index.html}{the Docs of PyTorch} for details. Alternatively you can try to find if there are similar problems on \href{https://discuss.pytorch.org/}{\emph{PyTorch Discuss}}.
+		\item Once you get into troubles concerning PyTorch, you can search \href{http://pytorch.org/docs/master/index.html}{the Docs of PyTorch} for details. Alternatively you can try to find if there are similar problems on \href{https://discuss.pytorch.org/}{\emph{PyTorch Discuss}}.
 	\end{itemize}
-	\item Get through cs231n!
+	\item Get through \href{http://cs231n.github.io/}{cs231n}!
 \end{itemize}
 \end{frame}
 
