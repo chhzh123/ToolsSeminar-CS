@@ -10,10 +10,10 @@ The schedule is listed below.
 | Week 3 | Nov 29 | C/C++ Toolchain | gcc, Makefile/CMake, gdb, time, perf |
 | Week 4 | Dec 6 | LaTeX Configuration & Usage | Overleaf/TexLive, LaTeX, BibTeX |
 | Week 5 | Dec 13 | Python Basics | Build-in objects and operations |
-| Week 6 | Mar 22 | Scientific Computing | pip, numpy, mathematica |
+| Week 6 | Mar 22 | Scientific Computing | pip, NumPy, Mathematica |
 | Week 7 | Mar 29 | Machine Learning | pandas, sklearn |
-| Week 8 | Apr 5 | Deep Learning | pytorch |
-| Week 9 | Apr 12 | Visualization | matplotlib, draw.io, tikz |
+| Week 8 | Apr 5 | Deep Learning | PyTorch |
+| Week 9 | Apr 12 | Visualization | Matplotlib, Draw.io, TikZ(-cd) |
 | Week 10 | Apr 19 | Parallel Computing | OpenMP, Cilk, AVX, MPI |
 
 ## Acknowledgements

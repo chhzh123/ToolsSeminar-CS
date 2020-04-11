@@ -32,7 +32,7 @@
 * 简介
 * 环境配置 Anaconda、pip
 * 常用工具 virtualenv、pipreqs、jupyter
-* 科学计算 scipy、numpy
+* 科学计算 SciPy、NumPy
 * 数学软件 Mathematica
 
 ## Week 7 - 机器学习
@@ -44,11 +44,11 @@
 ## Week 8 - 深度学习
 * 简介（AI里程碑）
 * 深度学习基础：多层感知机
-* 深度学习框架：pytorch
+* 深度学习框架：PyTorch
 
 ## Week 9 - 可视化
-* matplotlib
-* draw.io
+* Matplotlib
+* Draw.io
 * TikZ, TikZ-cd
 
 ## Week 10 - 并行计算
