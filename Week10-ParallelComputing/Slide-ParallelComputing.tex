@@ -8,9 +8,10 @@
 \title[ToolsSeminar]{Tools Seminar}
 \subtitle{Week 10 - Parallel Computing}
 \author[chhzh123]{Hongzheng~Chen}
-\date[Mar 30, 2020]{Mar 30, 2020}
+\date[Apr 25, 2020]{Apr 25, 2020}
 
 \begin{document}
+% GPU CUDA
 
 \begin{frame}
 \titlepage
@@ -42,7 +43,31 @@ instead, this plunge into parallelism is actually a \textbf{retreat} from even g
 \hfill ---  \emph{The Landscape of Parallel Computing Research: A View from Berkeley}, 2006
 \end{quote}
 \pause
-Thus, multicore processors put burdens from hardware to software, which needs programmers to code parallel programs.
+\begin{itemize}
+\item All the CPUs now have multiple cores, so the system always works in parallel!
+\item Multicore processors put burdens from hardware to software, which needs programmers to code \textbf{parallel programs}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Parallel Computing}
+Tightly associated with scientific computing (big data!)
+\begin{itemize}
+	\item Computational biology (gene, protein)
+	\item Weather/Climate prediction
+	\item Ocean circulation
+	\item Astronomy
+	\item Material
+	\item Physics
+\end{itemize}
+Supercomputer itself is a highly distributed parallel architecture
+\end{frame}
+
+\begin{frame}{Supercomputing}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{fig/top500.jpg}
+\caption*{\href{https://www.top500.org/lists/2019/11/}{Top 500} List November 2019}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Different hardware}
@@ -51,11 +76,18 @@ Thus, multicore processors put burdens from hardware to software, which needs pr
 \includegraphics[width=0.8\linewidth]{fig/accelerator_comparison.png}
 \end{figure}
 \begin{itemize}
-	\item CPU
-	\item GPU (Graphical Processing Unit)
-	\item FPGA (Field-Programmable Gate Array)
-	\item ASIC (Application-Specific Integrated Circuit)
+	\item CPU (Central Processing Unit): Intel, AMD, Arm
+	\item GPU (Graphical Processing Unit): Intel, Nvidia
+	\item FPGA (Field-Programmable Gate Array): Intel (Altera), Xilinx
+	\item ASIC (Application-Specific Integrated Circuit): Intel, Samsung, Quantum, Hisilicon
 \end{itemize}
+\end{frame}
+
+\begin{frame}{Von Neumann Architecture}
+\begin{figure}
+\centering
+\includegraphics[width=0.6\linewidth]{fig/von-neumann.jpg}
+\end{figure}
 \end{frame}
 
 \begin{frame}{CPU Architecture}
@@ -65,6 +97,7 @@ Thus, multicore processors put burdens from hardware to software, which needs pr
 \caption*{\small Intel core i7 CPU (Ivy Bridge)}
 % https://www.anandtech.com/Show/Index/5771?cPage=10&all=False&sort=0&page=3&slug=the-intel-ivy-bridge-core-i7-3770k-review
 \end{figure}
+* See CSAPP
 \end{frame}
 
 \begin{frame}
@@ -72,8 +105,25 @@ Thus, multicore processors put burdens from hardware to software, which needs pr
 \centering
 \includegraphics[width=\linewidth]{fig/gpu-fpga.jpg}
 \end{figure}
+\small
+\begin{itemize}
+\item CPU \& GPU: Traditional von Neumann architecture with instruction interpretation overheads
+\item FPGA: Directly program \textbf{circuits}!
+\end{itemize}
 \pause
 We will focus on CPU parallelism in this seminar
+\end{frame}
+
+\begin{frame}{Shared-Memory \& Distributed-Memory}
+\begin{figure}[H]
+\centering
+\begin{tabular}{cc}
+Shared-memory & \includegraphics[width=0.5\linewidth]{fig/shared-memory-model.png}\\
+\quad & \quad\\
+Distributed-memory & \includegraphics[width=0.5\linewidth]{fig/distributed_memory_model.png}
+\end{tabular}
+\caption*{\small Fig source: \href{https://bioinfomagician.wordpress.com/2013/11/11/parallel-computing-introduction-to-mpi/}{Parallel Computing: Introduction to MPI}}
+\end{figure}
 \end{frame}
 
 \section{Shared-Memory Parallelism}
@@ -81,9 +131,26 @@ We will focus on CPU parallelism in this seminar
 \sectionpage
 \end{frame}
 
+\begin{frame}[fragile]{Check your CPU}
+See how many CPU cores do you have
+\begin{itemize}
+\item Windows: Open the task manager
+\item Linux: \verb'lscpu'
+\end{itemize}
+\end{frame}
+
 \subsection{Multi-threads}
 \begin{frame}
 \subsectionpage
+\end{frame}
+
+\begin{frame}[fragile]{Process \& Thread}
+Check \verb'top'. Commonly, one program is a process.
+\begin{figure}
+\centering
+\includegraphics[width=0.8\linewidth]{fig/process_thread.png}
+\caption*{\small \href{https://www.educative.io/courses/java-multithreading-for-senior-engineering-interviews/m2G48X18NDO}{Multi-threading}}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Fork-Join Model}
@@ -139,7 +206,7 @@ void exec(int n){
 int main(){
 	thread myThread[4];
 	for (int i = 0; i < 4; ++i)
-		myThread = thread(exec,i);
+		myThread[i] = thread(exec,i);
 	for (int i = 0; i < 4; ++i)
 		myThread[i].join();
 }
@@ -238,19 +305,15 @@ Ref: \url{https://realpython.com/intro-to-python-threading/}
 
 \begin{frame}[fragile]{OpenMP Example (Matrix Multiplication)}
 \begin{lstlisting}
-# pragma omp for
-for ( i = 0; i < n; i++ )
-{
-  for ( j = 0; j < n; j++ )
-  {
+#pragma omp parallel num_threads(8)
+for (int i = 0; i < m; ++i)
+  for (int j = 0; j < n; ++j) {
     c[i][j] = 0.0;
-    for ( k = 0; k < n; k++ )
-    {
-      c[i][j] = c[i][j] + a[i][k] * b[k][j];
-    }
+    for (int k = 0; k < l; ++k)
+      c[i][j] += a[i][j] * b[j][k];
   }
-}
 \end{lstlisting}
+Compile with \verb'-fopenmp'
 \end{frame}
 
 \begin{frame}[fragile]{OpenMP Example (Summation)}
@@ -350,6 +413,14 @@ The most powerful thing is Cilk runtime deploys \textbf{work-stealing} schedulin
 * Please refer to Computer Architecture books / CSAPP
 \end{frame}
 
+\begin{frame}{SIMD}
+\begin{figure}
+\centering
+\includegraphics[width=0.8\linewidth]{fig/vectorization.png}
+\caption*{\small Fig source: \url{https://lappweb.in2p3.fr/~paubert/ASTERICS_HPC/6-6-1-985.html}}
+\end{figure}
+\end{frame}
+
 % https://chhzh123.github.io/blogs/2019-03-03-AVX/
 \begin{frame}{Intel CPU SIMD Instruction Set}
 \begin{itemize}
@@ -414,12 +485,25 @@ Add \verb'-mavx' flag when compiling\\
 
 % https://chhzh123.github.io/summary/parallel-computing/mpi/
 \begin{frame}[fragile]{Message Passing Interface (MPI)}
-Need to install \href{http://www.mpich.org/}{MPI} compiler
+\begin{itemize}
+\item All the machine execute the \textbf{same} program!
+\item Use condition to judge whether it needs to execute this piece of code
+\item Need to install \href{http://www.mpich.org/}{MPI} compiler
 \begin{itemize}
 	\item \verb'#include<mpi.h>'
 	\item \verb'mpicc', \verb'mpic++'
 	\item \verb'mpirun -np 2 foo : -np 4 bar'
 \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Distributed Memory Model}
+\begin{figure}
+\centering
+\includegraphics[width=0.5\linewidth]{fig/distributed_memory_model.png}
+\caption*{Each host has a rank}
+\end{figure}
+* Tianhe2 with millions of distributed nodes need to explicitly manage communication via MPI
 \end{frame}
 
 \begin{frame}[fragile]{MPI Hello World}
