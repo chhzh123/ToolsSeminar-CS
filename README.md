@@ -14,7 +14,7 @@ The schedule is listed below.
 | Week 7 | Mar 29 | Machine Learning | pandas, sklearn |
 | Week 8 | Apr 5 | Deep Learning | PyTorch |
 | Week 9 | Apr 12 | Visualization | Matplotlib, Draw.io, TikZ(-cd) |
-| Week 10 | Apr 19 | Parallel Computing | OpenMP, Cilk, AVX, MPI |
+| Week 10 | Apr 25 | Parallel Computing | OpenMP, Cilk, AVX, MPI |
 
 ## Acknowledgements
 * Week 1, 4 is partly based on *[Tools Seminar](https://github.com/pppppass/ToolsSeminar)* in applied mathematics held in PKU
