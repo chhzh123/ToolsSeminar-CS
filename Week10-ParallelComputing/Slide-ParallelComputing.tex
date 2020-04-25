@@ -259,6 +259,16 @@ Two basic methods:
 \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]{Atomic Operation in C++11}
+\verb'<atomic>', see \href{https://en.cppreference.com/w/cpp/atomic/atomic}{Cpp reference}
+\begin{lstlisting}
+std::atomic<long> value(0);
+value++; // This is an atomic op
+value += 5; // And so is this
+// compare and swap: CAS(&addr, old_val, new_val)
+\end{lstlisting}
+\end{frame}
+
 \begin{frame}[fragile]{Multi-threading in Python}
 \begin{itemize}
 	\item \verb'threading.Thread'
