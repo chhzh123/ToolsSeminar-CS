@@ -1,6 +1,6 @@
 # Tools Seminar
 
-This is a repository of the seminar about tools in computer science held in SYSU.
+This is a repository of the seminar about commonly used tools in computer science and computer engineering. This seminar was held at [Sun Yat-sen University (SYSU)](http://www.sysu.edu.cn/2012/en/index.htm) from 2019 Fall to 2020 Spring.
 The schedule is listed below.
 
 |  | Date | Topic | Main Tools |
